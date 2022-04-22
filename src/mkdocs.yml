@@ -31,6 +31,11 @@ theme:
       toggle:
          icon: material/toggle-switch-off-outline
          name: Switch to light mode
+  markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+
 nav:    
   - Обзор: index.md
   - Менеджеру:
@@ -45,6 +50,8 @@ nav:
     - Работа с полученными токенами: tokens.md
     - Метчинг учеток: matching.md
     - Тестирование: testing.md
+    - Методы:
+      - Информация о пользователе: userinfo.md
   - Новости: 
     - Новости продукта: news.md
     - Ползные статьи: articles.md
