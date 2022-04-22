@@ -13,7 +13,7 @@
     
     
       
-        <title>Авторизация - Tinkoff ID Документация</title>
+        <title>Информация о пользователе - Tinkoff ID Документация</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#web2web" class="md-skip">
+        <a href="#_1" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Авторизация
+              Информация о пользователе
             
           </span>
         </div>
@@ -212,15 +212,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../w2w/" class="md-tabs__link">
         Разработчику
       </a>
     </li>
@@ -230,13 +228,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../userinfo/" class="md-tabs__link">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         Методы
       </a>
     </li>
@@ -444,14 +444,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
@@ -484,52 +482,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Авторизация
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../w2w/" class="md-nav__link">
         Авторизация
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Содержание раздела">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание раздела
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    Процесс авторизации
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -603,12 +560,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -633,11 +592,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../userinfo/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Информация о пользователе
       </a>
+      
     </li>
   
 
@@ -805,21 +774,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание раздела
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    Процесс авторизации
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -832,138 +786,68 @@
                 
 
 
-<h1 id="web2web">Сценарий WEB2WEB</h1>
-<p><img alt="Диаграмма взаимодействия" src="../img/Diagram.png" title="Дига" /></p>
-<h2 id="_1">Процесс авторизации</h2>
-<p>1) Пользователь инициирует процесс авторизации, нажимая кнопку "Войти с Тинькофф" на сайте или в приложении партнера.<br />
-2) Партнерский сервис должен сгенерировать параметр <code>state</code> и связать его с браузером пользователя для защиты от CSRF-атак. Подробнее об этом можно почитать <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-14#section-4.7">здесь.</a><br />
-3) Инициализация авторизации осуществляетяс вызвом метода <code>GET https://id.tinkoff.ru/auth/authorize</code> со следующими параметрами:
-* client_id: идентификатор, который вы получили после регистрации
-* redirect_uri: <code>https://myintegration.ru/auth/complete</code>
-* state: строка из пункта 2
-* response_type: <code>code</code>
-* scope_parameters (<strong>для Tinkoff Business ID</strong>): URL закодированный json с ИНН и КПП компании клиента. Эти данные необходимы для того, чтобы уметь однозначно определять к какой именно компании давать доступ клиенту. Если у компании клиента нет КПП, передайте вместо него "0". Пример JSON до кодирования:</p>
-<pre><code>{ 
-    &quot;inn&quot; : &quot;9999980892&quot;, 
-    &quot;kpp&quot; : &quot;999991001&quot; 
-} 
-</code></pre>
-<p>Пример запроса:</p>
-<pre><code>GET https://id.tinkoff.ru/auth/authorize?client_id=%client_id%&amp;redirect_uri=https://myintegration.ru/auth/complete&amp;state=ABCxyz&amp;response_type=code&amp;scope_parameters=%20%7B%20%22inn%22%20:%20%227743180892%22,%20%22kpp%22%20:%20%22773101001%22%20%7D
-</code></pre>
-<p>4) Отображение экрана аутентификации в Тинькофф. Для веб-приложений это окно id.tinkoff.ru для ввода номера телефона, для мобильных приложений - экран ввода кода.   </p>
-<p>5) Пользователь вводит данные для прохождения аутентификации.   </p>
-<p>6) Пользователю отображается экран с выбором доступов, которые он предоставляет партнеру:  </p>
-<p><strong>Tinkoff ID</strong>
-<img alt="" src="https://business.cdn-tinkoff.ru/static/images/opensme/partner-script.jpg" /></p>
-<p><strong>Tinkoff Business ID</strong>
-<img alt="" src="https://business.cdn-tinkoff.ru/static/images/opensme/consents-pop-up.jpg" /></p>
-<p>7) Пользователь нажимает на кнопку "Продолжить", соглашаясь с передачей данных. В зависимости от настроек партнерского приложения, у пользователя есть возможность снятия чекбокса с данными, которые он не готов предоставить.
-Если у пользователя напротив всех полей есть включенный чекбокс, то при нажатии "Продолжить", в следующих авторизациях это окно открываться не будет.</p>
-<p>8) . На <code>https://myintegration.ru/auth/complete</code> придет запрос вида:  </p>
-<pre><code>https://myintegration.ru/auth/complete?state=ABCxyz&amp;code=c.1aGiAXX3Ni&amp;session_state=hXXXXXXY3kgs3nx0H3RTj3JzCSrdaqaDhU6lS8XXXXX.i4kl6dsEB1SQogzq0Nj0
-</code></pre>
-<ol>
-<li>
-<p>Партнерское приложение должно провалидировать параметр <code>state</code> для сверки со значением в первоначальном запросе. Если валидация прошла успешно, необходимо забрать значение параметра <code>code</code> для дальнейшего обмена на токены</p>
-</li>
-<li>
-<p>Для получения Access и Refresh токенов необходимо вызвать метод <code>POST https://id.tinkoff.ru/auth/token</code>.</p>
-</li>
-</ol>
-<p>Формат запроса:</p>
+<h1 id="_1">Получение учетных данных</h1>
+<p>Необходимо согласие пользователя на предоставление следующих данных: "Полное имя", "E-mail", "Номер телефона". Перечень scopes у токена для получения учетных данных:</p>
 <ul>
-<li>Authorization: Basic, где username и password соответствуют client_id и client_secret, полученным на электронную почту. <a href="https://gist.github.com/brandonmwest/a2632d0a65088a20c00a">Примеры составления в разных языках</a></li>
-<li>Content-type: <code>application/x-www-form-urlencoded</code></li>
-<li>grant_type: <code>authorization_code</code></li>
-<li>redirect_uri: <code>https://myintegration.ru/auth/complete</code></li>
-<li>code: код из пункта 9.</li>
+<li>profile</li>
+<li>phone</li>
+<li>email</li>
 </ul>
-<p>Пример запроса:</p>
-<pre><code>curl -X POST \
-     https://id.tinkoff.ru/auth/token \
-     -H 'Authorization: Basic ' \
-     -H 'Content-Type: application/x-www-form-urlencoded' \
-     -d 'grant_type=authorization_code&amp;redirect_uri=https://myintegration.ru/auth/complete&amp;code=c.1aGiAXX3Ni'
-</code></pre>
-<p>Пример ответа:</p>
-<pre><code>{
-    &quot;access_token&quot;: &quot;t.mzucgRIDwalXXX_at2Y2kmJB6yhNAQlWMNucp3w45xMcKknxWyl_XXXXkp5_3Nq8i_UvddDroJvd3elz-QH5hQ&quot;,
-    &quot;token_type&quot;: &quot;Bearer&quot;,
-    &quot;expires_in&quot;: 1791, // Время жизни токена в секундах
-    &quot;refresh_token&quot;: &quot;LShO9uuXXXXqozxO8WP2eGsJpXXXX-3QBGYUeNzUv4LTtjudU6zPofXbiXXXoznuCOLv6XXXCJn04fsLvsYH2Q&quot;
-}
-</code></pre>
-<ol>
-<li>После получения токена мы рекомендуем проверить, что клиент предоставил нужные доступы, и партнерский сервис правильно передал данные в scope_parameters. Для этого нужно вызвать метод <code>POST https://id.tinkoff.ru/auth/introspect</code> и проверить в ответе список доступов в поле <code>scope</code>.</li>
-</ol>
-<p>Формат запроса:</p>
+<p>Входные параметры:</p>
 <ul>
-<li>Authorization: Basic, где username и password соответствуют client-id и паролю из пункта 2. <a href="https://gist.github.com/brandonmwest/a2632d0a65088a20c00a">Примеры составления в разных языках</a></li>
-<li>Content-type: <code>application/x-www-form-urlencoded</code></li>
-<li>token — тело токена, полученного на предыдущем шаге.</li>
+<li>
+<p>заголовок <code>Authorization = Bearer \{access_token}</code></p>
+</li>
+<li>
+<p>поля формы <code>application/x-www-form-urlencoded</code>:</p>
+</li>
 </ul>
-<p>Пример запроса:</p>
-<pre><code>curl -X POST \
-     https://id.tinkoff.ru/auth/introspect \
-     -H 'Authorization: Basic ' \
-     -H 'Content-Type: application/x-www-form-urlencoded' \
-     -d 'token=t.mzucgXXXwalMAQ_at2Y2kmJB6yhXXXXXXXucp3w45xMcKknxWyl_8sWkkp5_XXXXX_UvddDroJvd3elz-QH5hQ'
-</code></pre>
-<p><strong>Пример ответа Tinkoff ID</strong>:</p>
-<pre><code>{
-   &quot;active&quot;:true,
-   &quot;scope&quot;:[
-      &quot;email&quot;,
-      &quot;profile&quot;,
-      &quot;opensme/individual/passport/get&quot;,
-      &quot;phone&quot;,
-   ],
-   &quot;client_id&quot;:&quot;partner&quot;,
-   &quot;token_type&quot;:&quot;access_token&quot;,
-   &quot;exp&quot;:1585728196,
-   &quot;iat&quot;:1585684996,
-   &quot;sub&quot;:&quot;2xxxxxxc-8xx6-4xxd-9xx5-bxxxxxxxxxxa&quot;,
-   &quot;aud&quot;:[
-     &quot;ibsme&quot;,
-     &quot;companyInfo&quot;
-   ],
-   &quot;iss&quot;:&quot;https://id.tinkoff.ru/&quot;
-}
-</code></pre>
-<p><strong>Пример ответа Tinkoff Business ID</strong>:</p>
-<pre><code>{
-   &quot;active&quot;:true,
-   &quot;scope&quot;:[
-      &quot;device_id&quot;,
-      &quot;opensme/inn/[9999980892]/kpp/[999991001]/payments/draft/create&quot;
-      &quot;opensme&quot;
-   ],
-   &quot;client_id&quot;:&quot;opensme&quot;,
-   &quot;token_type&quot;:&quot;access_token&quot;,
-   &quot;exp&quot;:1585728196,
-   &quot;iat&quot;:1585684996,
-   &quot;sub&quot;:&quot;2xxxxxxc-8xx6-4xxd-9xx5-bxxxxxxxxxxa&quot;,
-   &quot;aud&quot;:[
-     &quot;ibsme&quot;,
-     &quot;companyInfo&quot;
-   ],
-   &quot;iss&quot;:&quot;https://id.tinkoff.ru/&quot;
-}
-</code></pre>
-<p>Для каждого метода в Tinkoff API в описании можно найти шаблон доступа, который должен присутствовать в поле <code>scope</code>. По токену, который был получен в предыдущем шаге, для физических лиц можно запросить данные профиля, e-mail, паспорта, а для юридических лиц - создавать черновики платежных поручений компании с ИНН <code>9999980892</code> и КПП <code>999991001</code>.</p>
-<p><strong>Проверяйте и наличие доступов, и правильность переданных данных.</strong></p>
-<ol>
+<p>** <code>client_id</code> - id клиента</p>
+<p>** <code>client_secret</code> - пароль клиента</p>
+<p>Формат ответа
+Ответ метода представлен в формате <code>application/json</code>. Поля json документа (зависит от scope, не фиксированный список):</p>
+<ul>
 <li>
-<p>Сервис партнера обращается к Tinkoff API для получения персональных данных клиентов. Для ознакомления со списком доступных методов перейдите в раздел Методы.</p>
+<p><code>sub</code> - идентификатор авторизированного пользователя</p>
 </li>
 <li>
-<p>Передача персональных данных клиента для заполнения учетной записи и завершения авторизации.</p>
+<p><code>name</code> - фамилия, имя</p>
 </li>
 <li>
-<p>Сервис партнера перенаправляет клиента согласно бизнес-логике. При обнаржуении схожести новых учетных данных с существующими рекомендуем ознкомиться с разделом Метчинг учетных записей.</p>
+<p><code>gender</code> - пол</p>
 </li>
-</ol>
+<li>
+<p><code>birthdate</code> - дата рождения в формате yyyy-mm-dd</p>
+</li>
+<li>
+<p><code>family_name</code> - фамилия</p>
+</li>
+<li>
+<p><code>given_name</code> - имя</p>
+</li>
+<li>
+<p><code>middle_name</code> - отчество</p>
+</li>
+<li>
+<p><code>phone_number</code> - телефон в формате +(международный идентификатор страны)(номер абонента)</p>
+</li>
+<li>
+<p><code>email</code> - почтовый адрес</p>
+</li>
+</ul>
+<p>Пример запроса</p>
+<p><code>POST https://id.tinkoff.ru/userinfo/userinfo</code></p>
+<p>Пример ответа</p>
+<p><code>{
+ "email": "tinkoff@mail.ru",
+ "family_name": "Иванов",
+ "birthdate": "2000-01-01",
+ "sub": "923d4812-148c-45v4-a56b-eed15cdd2857",
+ "name": "Иванов Олег",
+ "phone_number": "+79998887766",
+ "middle_name": "Юрьевич",
+ "given_name": "Олег",
+}</code></p>
 
               
             </article>
@@ -982,7 +866,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул">
       
         
-        <a href="../tech_ank/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Документы" rel="prev">
+        <a href="../testing/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Тестирование" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -991,20 +875,20 @@
               <span class="md-footer__direction">
                 Назад
               </span>
-              Документы
+              Тестирование
             </div>
           </div>
         </a>
       
       
         
-        <a href="../mobile/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Мобильная авторизация" rel="next">
+        <a href="../news/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Новости продукта" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Вперед
               </span>
-              Мобильная авторизация
+              Новости продукта
             </div>
           </div>
           <div class="md-footer__button md-icon">
