@@ -849,6 +849,144 @@
  &quot;given_name&quot;: &quot;Олег&quot;,
 }
 </code></pre></div>
+<h1 id="_2">Получить паспортные данные</h1>
+<p>Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида <code>opensme/individual/passport/get</code></p>
+<p>AUTHORIZATIONS: httpAuth</p>
+<p>Responses</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>``` 200 Паспорт гражданина РФ</p>
+<h1 id="include">include <stdio.h></h1>
+<p>RESPONSE HEADERS</p>
+</div>
+</div>
+</div>
+<p>Идентификатор запроса</p>
+<table>
+<thead>
+<tr>
+<th>X-Request-Id</th>
+<th>string</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Идентификатор запроса</td>
+</tr>
+</tbody>
+</table>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>birthDate</code></td>
+<td>string <date>: Дата рождения</td>
+</tr>
+<tr>
+<td><code>birthPlace</code></td>
+<td>string: Место рождения</td>
+</tr>
+<tr>
+<td><code>citizenship</code></td>
+<td>string: Гражданство</td>
+</tr>
+<tr>
+<td><code>issueDate</code></td>
+<td>string <date>: Дата выдачи</td>
+</tr>
+<tr>
+<td><code>maritalStatus</code></td>
+<td>string: Семейное положение</td>
+</tr>
+<tr>
+<td><code>marriageDate</code></td>
+<td>string <date>: Дата регистрации брака</td>
+</tr>
+<tr>
+<td><code>numberOfChildren</code></td>
+<td>integer: Количество детей</td>
+</tr>
+<tr>
+<td><code>resident</code></td>
+<td>boolean: Является гражданином РФ</td>
+</tr>
+<tr>
+<td><code>serialNumber</code></td>
+<td>string: Серия и номер</td>
+</tr>
+<tr>
+<td><code>unitCode</code></td>
+<td>string: Код подразделения</td>
+</tr>
+<tr>
+<td><code>unitName</code></td>
+<td>string: Название подразделения</td>
+</tr>
+<tr>
+<td><code>validTo</code></td>
+<td>string <date>: Время действия паспорта</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">400 Некорректный запрос</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>``` 400 Некорректный запрос</p>
+<h1 id="include_1">include <iostream></h1>
+<p>RESPONSE HEADERS</p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>X-Request-Id</th>
+<th>string</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Идентификатор запроса</td>
+</tr>
+</tbody>
+</table>
+<pre><code>RESPONSE SCHEMA: application/json
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string: Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string: Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string: Код ошибки</td>
+</tr>
+<tr>
+<td><code>errorDetails</code> (required)</td>
+<td>object: Дополнительные данные об ошибке</td>
+</tr>
+</tbody>
+</table>
 
               
             </article>
