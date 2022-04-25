@@ -18,6 +18,9 @@ theme:
     - search.share
     - search.suggest
     - toc.follow
+    - content.tabs.link
+    - navigation.instant
+  
   palette:
     - scheme: default
       primary: yellow
@@ -31,10 +34,6 @@ theme:
       toggle:
          icon: material/toggle-switch-off-outline
          name: Switch to light mode
-   features:
-  - content.tabs.link
-  - navigation.instant
-  - navigation.tabs
 
 markdown_extensions:
   - pymdownx.superfences
