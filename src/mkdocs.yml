@@ -35,6 +35,10 @@ theme:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true 
+  features:
+  - content.tabs.link
+
+
 
 nav:    
   - Обзор: index.md
