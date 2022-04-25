@@ -806,15 +806,12 @@
 <p>Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида <code>opensme/individual/passport/get</code></p>
 <p>AUTHORIZATIONS: httpAuth</p>
 <p>Responses</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label><label for="__tabbed_1_2">400 Некорректный запрос</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>```    200 Паспорт гражданина РФ</p>
-<p>RESPONSE HEADERS</p>
-</div>
-</div>
-</div>
-<p>Идентификатор запроса</p>
+<p>200 Паспорт гражданина РФ</p>
+<p>RESPONSE HEADERS
+Идентификатор запроса</p>
 <table>
 <thead>
 <tr>
@@ -888,14 +885,10 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">400 Некорректный запрос</label></div>
-<div class="tabbed-content">
+</div>
 <div class="tabbed-block">
 <p>``` 400 Некорректный запрос</p>
 <p>RESPONSE HEADERS</p>
-</div>
-</div>
-</div>
 <table>
 <thead>
 <tr>
@@ -938,6 +931,9 @@
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
 
               
             </article>
