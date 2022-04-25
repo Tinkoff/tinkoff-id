@@ -13,7 +13,7 @@
     
     
       
-        <title>Информация о пользователе - Tinkoff ID Документация</title>
+        <title>Получить паспортные данные - Tinkoff ID Документация</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Информация о пользователе
+              Получить паспортные данные
             
           </span>
         </div>
@@ -236,7 +236,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../userinfo/" class="md-tabs__link md-tabs__link--active">
         Методы
       </a>
     </li>
@@ -594,6 +594,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../userinfo/" class="md-nav__link">
+        Информация о пользователе
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -606,23 +620,9 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Информация о пользователе
-      </a>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../passport/" class="md-nav__link">
         Получить паспортные данные
       </a>
+      
     </li>
   
 
@@ -802,69 +802,142 @@
                 
 
 
-<h1 id="_1">Получение учетных данных</h1>
-<p>Необходимо согласие пользователя на предоставление следующих данных: "Полное имя", "E-mail", "Номер телефона". Перечень scopes у токена для получения учетных данных:</p>
-<ul>
-<li>profile</li>
-<li>phone</li>
-<li>email</li>
-</ul>
-<p>Входные параметры:</p>
-<ul>
-<li>
-<p>заголовок <code>Authorization = Bearer \{access_token}</code></p>
-</li>
-<li>
-<p>поля формы <code>application/x-www-form-urlencoded</code>:</p>
-</li>
-</ul>
-<p>** <code>client_id</code> - id клиента</p>
-<p>** <code>client_secret</code> - пароль клиента</p>
-<p>Формат ответа
-Ответ метода представлен в формате <code>application/json</code>. Поля json документа (зависит от scope, не фиксированный список):</p>
-<ul>
-<li>
-<p><code>sub</code> - идентификатор авторизированного пользователя</p>
-</li>
-<li>
-<p><code>name</code> - фамилия, имя</p>
-</li>
-<li>
-<p><code>gender</code> - пол</p>
-</li>
-<li>
-<p><code>birthdate</code> - дата рождения в формате yyyy-mm-dd</p>
-</li>
-<li>
-<p><code>family_name</code> - фамилия</p>
-</li>
-<li>
-<p><code>given_name</code> - имя</p>
-</li>
-<li>
-<p><code>middle_name</code> - отчество</p>
-</li>
-<li>
-<p><code>phone_number</code> - телефон в формате +(международный идентификатор страны)(номер абонента)</p>
-</li>
-<li>
-<p><code>email</code> - почтовый адрес</p>
-</li>
-</ul>
-<p>Пример запроса</p>
-<p><code>POST https://id.tinkoff.ru/userinfo/userinfo</code></p>
-<p>Пример ответа</p>
-<div class="highlight"><pre><span></span><code>{
- &quot;email&quot;: &quot;tinkoff@mail.ru&quot;,
- &quot;family_name&quot;: &quot;Иванов&quot;,
- &quot;birthdate&quot;: &quot;2000-01-01&quot;,
- &quot;sub&quot;: &quot;923d4812-148c-45v4-a56b-eed15cdd2857&quot;,
- &quot;name&quot;: &quot;Иванов Олег&quot;,
- &quot;phone_number&quot;: &quot;+79998887766&quot;,
- &quot;middle_name&quot;: &quot;Юрьевич&quot;,
- &quot;given_name&quot;: &quot;Олег&quot;,
-}
-</code></pre></div>
+<h1 id="_1">Получить паспортные данные</h1>
+<p>Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида <code>opensme/individual/passport/get</code></p>
+<p>AUTHORIZATIONS: httpAuth</p>
+<p>Responses</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>```    200 Паспорт гражданина РФ</p>
+<p>RESPONSE HEADERS</p>
+</div>
+</div>
+</div>
+<p>Идентификатор запроса</p>
+<table>
+<thead>
+<tr>
+<th>X-Request-Id</th>
+<th>string</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Идентификатор запроса</td>
+</tr>
+</tbody>
+</table>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>birthDate</code></td>
+<td>string <date>: Дата рождения</td>
+</tr>
+<tr>
+<td><code>birthPlace</code></td>
+<td>string: Место рождения</td>
+</tr>
+<tr>
+<td><code>citizenship</code></td>
+<td>string: Гражданство</td>
+</tr>
+<tr>
+<td><code>issueDate</code></td>
+<td>string <date>: Дата выдачи</td>
+</tr>
+<tr>
+<td><code>maritalStatus</code></td>
+<td>string: Семейное положение</td>
+</tr>
+<tr>
+<td><code>marriageDate</code></td>
+<td>string <date>: Дата регистрации брака</td>
+</tr>
+<tr>
+<td><code>numberOfChildren</code></td>
+<td>integer: Количество детей</td>
+</tr>
+<tr>
+<td><code>resident</code></td>
+<td>boolean: Является гражданином РФ</td>
+</tr>
+<tr>
+<td><code>serialNumber</code></td>
+<td>string: Серия и номер</td>
+</tr>
+<tr>
+<td><code>unitCode</code></td>
+<td>string: Код подразделения</td>
+</tr>
+<tr>
+<td><code>unitName</code></td>
+<td>string: Название подразделения</td>
+</tr>
+<tr>
+<td><code>validTo</code></td>
+<td>string <date>: Время действия паспорта</td>
+</tr>
+</tbody>
+</table>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">400 Некорректный запрос</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>``` 400 Некорректный запрос</p>
+<p>RESPONSE HEADERS</p>
+</div>
+</div>
+</div>
+<table>
+<thead>
+<tr>
+<th>X-Request-Id</th>
+<th>string</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>required</td>
+<td>Идентификатор запроса</td>
+</tr>
+</tbody>
+</table>
+<pre><code>RESPONSE SCHEMA: application/json
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string: Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string: Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string: Код ошибки</td>
+</tr>
+<tr>
+<td><code>errorDetails</code> (required)</td>
+<td>object: Дополнительные данные об ошибке</td>
+</tr>
+</tbody>
+</table>
 
               
             </article>
@@ -883,7 +956,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул">
       
         
-        <a href="../testing/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Тестирование" rel="prev">
+        <a href="../userinfo/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Информация о пользователе" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -892,20 +965,20 @@
               <span class="md-footer__direction">
                 Назад
               </span>
-              Тестирование
+              Информация о пользователе
             </div>
           </div>
         </a>
       
       
         
-        <a href="../passport/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Получить паспортные данные" rel="next">
+        <a href="../news/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Новости продукта" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Вперед
               </span>
-              Получить паспортные данные
+              Новости продукта
             </div>
           </div>
           <div class="md-footer__button md-icon">
