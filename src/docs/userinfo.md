@@ -39,11 +39,12 @@
 
 Пример запроса
 
-`POST https://id.tinkoff.ru/userinfo/userinfo`
+```POST https://id.tinkoff.ru/userinfo/userinfo```
 
 Пример ответа
-
-`{
+=== "userinfo"
+``` userinfo
+{
  "email": "tinkoff@mail.ru",
  "family_name": "Иванов",
  "birthdate": "2000-01-01",
@@ -52,4 +53,5 @@
  "phone_number": "+79998887766",
  "middle_name": "Юрьевич",
  "given_name": "Олег",
-}`
+}
+```
