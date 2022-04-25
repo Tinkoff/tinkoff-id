@@ -42,8 +42,8 @@
 ```POST https://id.tinkoff.ru/userinfo/userinfo```
 
 Пример ответа
-=== "userinfo"
-``` userinfo
+
+```
 {
  "email": "tinkoff@mail.ru",
  "family_name": "Иванов",
