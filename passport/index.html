@@ -831,109 +831,93 @@
 <thead>
 <tr>
 <th>Method</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>birthDate</code></td>
-<td>string <date>: Дата рождения</td>
+<td>string <date></td>
+<td>Дата рождения</td>
 </tr>
 <tr>
 <td><code>birthPlace</code></td>
-<td>string: Место рождения</td>
+<td>string</td>
+<td>Место рождения</td>
 </tr>
 <tr>
 <td><code>citizenship</code></td>
-<td>string: Гражданство</td>
+<td>string</td>
+<td>Гражданство</td>
 </tr>
 <tr>
 <td><code>issueDate</code></td>
-<td>string <date>: Дата выдачи</td>
+<td>string <date></td>
+<td>Дата выдачи</td>
 </tr>
 <tr>
 <td><code>maritalStatus</code></td>
-<td>string: Семейное положение</td>
+<td>string</td>
+<td>Семейное положение</td>
 </tr>
 <tr>
 <td><code>marriageDate</code></td>
-<td>string <date>: Дата регистрации брака</td>
+<td>string <date></td>
+<td>Дата регистрации брака</td>
 </tr>
 <tr>
 <td><code>numberOfChildren</code></td>
-<td>integer: Количество детей</td>
+<td>integer</td>
+<td>Количество детей</td>
 </tr>
 <tr>
 <td><code>resident</code></td>
-<td>boolean: Является гражданином РФ</td>
+<td>boolean</td>
+<td>Является гражданином РФ</td>
 </tr>
 <tr>
 <td><code>serialNumber</code></td>
-<td>string: Серия и номер</td>
+<td>string</td>
+<td>Серия и номер</td>
 </tr>
 <tr>
 <td><code>unitCode</code></td>
-<td>string: Код подразделения</td>
+<td>string</td>
+<td>Код подразделения</td>
 </tr>
 <tr>
 <td><code>unitName</code></td>
-<td>string: Название подразделения</td>
+<td>string</td>
+<td>Название подразделения</td>
 </tr>
 <tr>
 <td><code>validTo</code></td>
-<td>string <date>: Время действия паспорта</td>
+<td>string <date></td>
+<td>Время действия паспорта</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="tabbed-block">
-<p>``` 400 Некорректный запрос</p>
-<p>RESPONSE HEADERS</p>
-<table>
-<thead>
-<tr>
-<th>X-Request-Id</th>
-<th>string</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>required</td>
-<td>Идентификатор запроса</td>
-</tr>
-</tbody>
-</table>
-<pre><code>RESPONSE SCHEMA: application/json
+<div class="tabbed-block"></div>
+</div>
+</div>
+<p>400 Некорректный запрос</p>
+<pre><code>RESPONSE HEADERS
+
+| X-Request-Id     | string                         |
+| ----------- | ------------------------------------ |
+| required      | Идентификатор запроса  |
+
+RESPONSE SCHEMA: application/json
+
+| Method      | Type | Description                          |
+| ----------- | --------- | --------------------------- |
+| `errorId` (required)       | string | Уникальный идентификатор ошибки |
+| `errorMessage` (required)       | string | Текст ошибки |
+| `errorCode` (required)       | string | Код ошибки |
+| `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>errorId</code> (required)</td>
-<td>string: Уникальный идентификатор ошибки</td>
-</tr>
-<tr>
-<td><code>errorMessage</code> (required)</td>
-<td>string: Текст ошибки</td>
-</tr>
-<tr>
-<td><code>errorCode</code> (required)</td>
-<td>string: Код ошибки</td>
-</tr>
-<tr>
-<td><code>errorDetails</code> (required)</td>
-<td>object: Дополнительные данные об ошибке</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
 
               
             </article>
