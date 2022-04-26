@@ -1,14 +1,14 @@
-#Получить паспортные данные
+#Получить адреса
 
-Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/passport/get```
+Необходимо согласие пользователя на получение информации об адресах. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/addresses/get```
 
 AUTHORIZATIONS: httpAuth
 
 Responses
 
-=== "200 Паспорт гражданина РФ"
+=== "200 Адреса"
 
-    200 Паспорт гражданина РФ
+    200 Получить адреса
 
     RESPONSE HEADERS
 
@@ -20,18 +20,31 @@ Responses
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `birthDate`       | string <date> | Дата рождения |
-    | `birthPlace`       | string | Место рождения  |
-    | `citizenship`    | string | Гражданство|
-    | `issueDate`    | string <date> | Дата выдачи|
-    | `maritalStatus`    | string | Семейное положение|
-    | `marriageDate`    | string <date> | Дата регистрации брака|
-    | `numberOfChildren`    | integer | Количество детей|
-    | `resident`    | boolean | Является гражданином РФ|
-    | `serialNumber`    | string | Серия и номер|
-    | `unitCode`    | string | Код подразделения|
-    | `unitName`    | string | Название подразделения|
-    | `validTo`    | string <date> | Время действия паспорта|
+    | `addresses `       | Array of objects (AddressResponse) | Адреса физического лица |
+    | `addressType` (required)      | string (AddressType) | Enum: "RESIDENCE_ADDRESS" "REGISTRATION_ADDRESS" "WORK_ADDRESS"
+    Тип адреса. Может принимать одно из трех значений:
+    * REGISTRATION_ADDRESS - адрес регистрации
+    * WORK_ADDRESS - рабочий адрес
+    * RESIDENCE_ADDRESS - домашний адрес |
+    | `apartment `       | string | Квартира |
+    | `building`       | string | Строение |
+    | `city`| string | Город |
+    | `claddrCode`| string | Код адреса в КЛАДР |
+    | `country`| string | Страна |
+    | `district`| string | Район |
+    | `fiasCode`| string | Код адреса в ФИАС |
+    | `house`| string | Номер дома |
+    | `housing`| string | Корпус |
+    | `latitude`| number <double> | Широта |
+    | `longitude`| number <double> | Долгота |
+    | `primary` (required)| boolean | Является основным адресом |
+    | `region` | string | Регион |
+    | `settlement` | string | Населенный пункт |
+    | `street` | string | Улица |
+    | `zipCode` | string | Индекс |
+
+
+
 
 === "400"
 

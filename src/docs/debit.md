@@ -1,37 +1,32 @@
-#Получить паспортные данные
-
-Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/passport/get```
+#Получить информацию об активных дебетовых счетах клиента
+Необходимо согласие пользователя на получение реквизитов дебетовых счетов. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/accounts/debit/get```
 
 AUTHORIZATIONS: httpAuth
 
 Responses
 
-=== "200 Паспорт гражданина РФ"
+=== "200  Активные дебетовые счета"
 
-    200 Паспорт гражданина РФ
+    200  Активные дебетовые счета
 
     RESPONSE HEADERS
 
     `X-Request-Id` (required) - `string` - Идентификатор запроса
     
 
-
     RESPONSE SCHEMA: application/json
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `birthDate`       | string <date> | Дата рождения |
-    | `birthPlace`       | string | Место рождения  |
-    | `citizenship`    | string | Гражданство|
-    | `issueDate`    | string <date> | Дата выдачи|
-    | `maritalStatus`    | string | Семейное положение|
-    | `marriageDate`    | string <date> | Дата регистрации брака|
-    | `numberOfChildren`    | integer | Количество детей|
-    | `resident`    | boolean | Является гражданином РФ|
-    | `serialNumber`    | string | Серия и номер|
-    | `unitCode`    | string | Код подразделения|
-    | `unitName`    | string | Название подразделения|
-    | `validTo`    | string <date> | Время действия паспорта|
+    | `accounts`  | Array of objects (DebitAccount) | |
+    | `name` (required)  | string | Получатель (ФИО) |
+    | `accountNumber` (required)  | string | Счёт получателя платежа |
+    | `bank` (required) | object (BankInfo) ||
+    | `bik` (required)  | string \d{9} | БИК банка получателя. ВАЖНО: При перечислении налоговых платежей с 01.01.2021 г. нужно указывать новые значения БИК банков получателя. Подробнее: https://spmag.ru/articles/polya-platezhnogo-porucheniya-v-2021-godu-obrazec |
+    | `corAccount` (required) | string \d{20} | Корреспондентский счёт банка получателя. ВАЖНО: С 01.01.2021 г., уплачивая налоги, указывается номер счёта банка получателя, входящий в состав единого казначейского счёта (ЕКС), раньше это поле заполнялось нулями. |
+    | `name` (required) | string [ 1 .. 255 ] characters | Наименование банка получателя. ВАЖНО: При заполнении платежек на перечисление налогов с 01.01.2021 г. в данном поле после названия банка, через знак «//» следует указывать название счета казначейства. |
+
+ 
 
 === "400"
 

@@ -22,14 +22,14 @@ theme:
     - navigation.instant
   
   palette:
-    - scheme: default
-      primary: yellow
+    - scheme: slate
+      primary: amber
       accent: indigo
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
-    - scheme: slate
-      primary: yellow
+    - scheme: default
+      primary: amber
       accent: indigo
       toggle:
          icon: material/toggle-switch-off-outline
@@ -59,6 +59,14 @@ nav:
   - Методы:
     - Информация о пользователе: userinfo.md
     - Получить паспортные данные: passport.md
+    - Получить водительские удостоверения: driverlicenses.md
+    - Получить ИНН: inn.md
+    - Получить СНИЛС: snils.md
+    - Получить адреса: addresses.md
+    - Получить информацию об идентификации пользователя: identification.md
+    - Получить статус самозанятого: selfemployed.md
+    - Получить информацию об активных дебетовых счетах: debit.md
+    - Получить информацию об активной подписке клиента: subscription
   - Новости: 
     - Новости продукта: news.md
     - Ползные статьи: articles.md

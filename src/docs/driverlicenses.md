@@ -1,14 +1,14 @@
-#Получить паспортные данные
+#Получить водительские удостоверения
 
-Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/passport/get```
+Необходимо согласие пользователя на получение информации о водительских удостоверениях. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/driver-licenses/get```
 
 AUTHORIZATIONS: httpAuth
 
 Responses
 
-=== "200 Паспорт гражданина РФ"
+=== "200 Водительские удостоверения"
 
-    200 Паспорт гражданина РФ
+    200 Водительские удостоверения
 
     RESPONSE HEADERS
 
@@ -20,18 +20,10 @@ Responses
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `birthDate`       | string <date> | Дата рождения |
-    | `birthPlace`       | string | Место рождения  |
-    | `citizenship`    | string | Гражданство|
-    | `issueDate`    | string <date> | Дата выдачи|
-    | `maritalStatus`    | string | Семейное положение|
-    | `marriageDate`    | string <date> | Дата регистрации брака|
-    | `numberOfChildren`    | integer | Количество детей|
-    | `resident`    | boolean | Является гражданином РФ|
-    | `serialNumber`    | string | Серия и номер|
-    | `unitCode`    | string | Код подразделения|
-    | `unitName`    | string | Название подразделения|
-    | `validTo`    | string <date> | Время действия паспорта|
+    | `licenses`       | array of objects <DriverLicenseResponse> | Водительские удостоверения физического лица |
+    | `docNumber`       | string | Номер документа водительского удостоверения  |
+    | `issueDate`    | string <date> | Дата выдачи водительского удостоверения |
+ 
 
 === "400"
 

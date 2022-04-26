@@ -806,18 +806,17 @@
 <p>Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида <code>opensme/individual/passport/get</code></p>
 <p>AUTHORIZATIONS: httpAuth</p>
 <p>Responses</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label><label for="__tabbed_1_2">400 Некорректный запрос</label><label for="__tabbed_1_3">401 Ошибка аутентификации</label><label for="__tabbed_1_4">403 Ошибка авторизации</label><label for="__tabbed_1_5">422 Ошибка при обработке данных</label><label for="__tabbed_1_6">429 Слишком много запросов</label><label for="__tabbed_1_7">500 Ошибка сервера</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label><label for="__tabbed_1_2">400</label><label for="__tabbed_1_3">401</label><label for="__tabbed_1_4">403</label><label for="__tabbed_1_5">422</label><label for="__tabbed_1_6">429</label><label for="__tabbed_1_7">500</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>200 Паспорт гражданина РФ</p>
-<p>RESPONSE HEADERS
-Идентификатор запроса</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p>RESPONSE HEADERS</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -889,12 +888,12 @@
 <div class="tabbed-block">
 <p>400 Некорректный запрос</p>
 <p>RESPONSE HEADERS</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -926,12 +925,12 @@
 <div class="tabbed-block">
 <p>401 Ошибка аутентификации</p>
 <p>RESPONSE HEADERS</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса |</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -958,12 +957,12 @@
 <div class="tabbed-block">
 <p>403 Ошибка авторизации</p>
 <p>RESPONSE HEADERS</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -990,12 +989,12 @@
 <div class="tabbed-block">
 <p>422 Ошибка при обработке данных</p>
 <p>RESPONSE HEADERS</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1027,12 +1026,12 @@
 <div class="tabbed-block">
 <p>429 Слишком много запросов</p>
 <p>RESPONSE HEADERS</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1059,12 +1058,12 @@
 <div class="tabbed-block">
 <p>500 Ошибка сервера</p>
 <p>RESPONSE HEADERS</p>
-<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> - Идентификатор запроса</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
-<th>Method</th>
+<th>Parameters</th>
 <th>Type</th>
 <th>Description</th>
 </tr>

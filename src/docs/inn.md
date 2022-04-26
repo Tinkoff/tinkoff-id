@@ -1,14 +1,14 @@
-#Получить паспортные данные
+#Получить ИНН
 
-Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/passport/get```
+Необходимо согласие пользователя на получение информации о ИНН. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/inn/get```
 
 AUTHORIZATIONS: httpAuth
 
 Responses
 
-=== "200 Паспорт гражданина РФ"
+=== "200 ИНН"
 
-    200 Паспорт гражданина РФ
+    200 ИНН
 
     RESPONSE HEADERS
 
@@ -20,18 +20,9 @@ Responses
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `birthDate`       | string <date> | Дата рождения |
-    | `birthPlace`       | string | Место рождения  |
-    | `citizenship`    | string | Гражданство|
-    | `issueDate`    | string <date> | Дата выдачи|
-    | `maritalStatus`    | string | Семейное положение|
-    | `marriageDate`    | string <date> | Дата регистрации брака|
-    | `numberOfChildren`    | integer | Количество детей|
-    | `resident`    | boolean | Является гражданином РФ|
-    | `serialNumber`    | string | Серия и номер|
-    | `unitCode`    | string | Код подразделения|
-    | `unitName`    | string | Название подразделения|
-    | `validTo`    | string <date> | Время действия паспорта|
+    | `inn`       | string ^(\d{12})$ | ИНН |
+
+ 
 
 === "400"
 
