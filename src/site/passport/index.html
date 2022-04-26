@@ -806,128 +806,284 @@
 <p>Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида <code>opensme/individual/passport/get</code></p>
 <p>AUTHORIZATIONS: httpAuth</p>
 <p>Responses</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label><label for="__tabbed_1_2">400 Некорректный запрос</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:7"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><input id="__tabbed_1_5" name="__tabbed_1" type="radio" /><input id="__tabbed_1_6" name="__tabbed_1" type="radio" /><input id="__tabbed_1_7" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">200 Паспорт гражданина РФ</label><label for="__tabbed_1_2">400 Некорректный запрос</label><label for="__tabbed_1_3">401 Ошибка аутентификации</label><label for="__tabbed_1_4">403 Ошибка авторизации</label><label for="__tabbed_1_5">422 Ошибка при обработке данных</label><label for="__tabbed_1_6">429 Слишком много запросов</label><label for="__tabbed_1_7">500 Ошибка сервера</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p>200 Паспорт гражданина РФ</p>
 <p>RESPONSE HEADERS
 Идентификатор запроса</p>
-<table>
-<thead>
-<tr>
-<th>X-Request-Id</th>
-<th>string</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>required</td>
-<td>Идентификатор запроса</td>
-</tr>
-</tbody>
-</table>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
 <p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
 <th>Method</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>birthDate</code></td>
-<td>string <date>: Дата рождения</td>
+<td>string <date></td>
+<td>Дата рождения</td>
 </tr>
 <tr>
 <td><code>birthPlace</code></td>
-<td>string: Место рождения</td>
+<td>string</td>
+<td>Место рождения</td>
 </tr>
 <tr>
 <td><code>citizenship</code></td>
-<td>string: Гражданство</td>
+<td>string</td>
+<td>Гражданство</td>
 </tr>
 <tr>
 <td><code>issueDate</code></td>
-<td>string <date>: Дата выдачи</td>
+<td>string <date></td>
+<td>Дата выдачи</td>
 </tr>
 <tr>
 <td><code>maritalStatus</code></td>
-<td>string: Семейное положение</td>
+<td>string</td>
+<td>Семейное положение</td>
 </tr>
 <tr>
 <td><code>marriageDate</code></td>
-<td>string <date>: Дата регистрации брака</td>
+<td>string <date></td>
+<td>Дата регистрации брака</td>
 </tr>
 <tr>
 <td><code>numberOfChildren</code></td>
-<td>integer: Количество детей</td>
+<td>integer</td>
+<td>Количество детей</td>
 </tr>
 <tr>
 <td><code>resident</code></td>
-<td>boolean: Является гражданином РФ</td>
+<td>boolean</td>
+<td>Является гражданином РФ</td>
 </tr>
 <tr>
 <td><code>serialNumber</code></td>
-<td>string: Серия и номер</td>
+<td>string</td>
+<td>Серия и номер</td>
 </tr>
 <tr>
 <td><code>unitCode</code></td>
-<td>string: Код подразделения</td>
+<td>string</td>
+<td>Код подразделения</td>
 </tr>
 <tr>
 <td><code>unitName</code></td>
-<td>string: Название подразделения</td>
+<td>string</td>
+<td>Название подразделения</td>
 </tr>
 <tr>
 <td><code>validTo</code></td>
-<td>string <date>: Время действия паспорта</td>
+<td>string <date></td>
+<td>Время действия паспорта</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="tabbed-block">
-<p>``` 400 Некорректный запрос</p>
+<p>400 Некорректный запрос</p>
 <p>RESPONSE HEADERS</p>
-<table>
-<thead>
-<tr>
-<th>X-Request-Id</th>
-<th>string</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>required</td>
-<td>Идентификатор запроса</td>
-</tr>
-</tbody>
-</table>
-<pre><code>RESPONSE SCHEMA: application/json
-</code></pre>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p>RESPONSE SCHEMA: application/json</p>
 <table>
 <thead>
 <tr>
 <th>Method</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>errorId</code> (required)</td>
-<td>string: Уникальный идентификатор ошибки</td>
+<td>string</td>
+<td>Уникальный идентификатор ошибки</td>
 </tr>
 <tr>
 <td><code>errorMessage</code> (required)</td>
-<td>string: Текст ошибки</td>
+<td>string</td>
+<td>Текст ошибки</td>
 </tr>
 <tr>
 <td><code>errorCode</code> (required)</td>
-<td>string: Код ошибки</td>
+<td>string</td>
+<td>Код ошибки</td>
 </tr>
 <tr>
 <td><code>errorDetails</code> (required)</td>
-<td>object: Дополнительные данные об ошибке</td>
+<td>object</td>
+<td>Дополнительные данные об ошибке</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>401 Ошибка аутентификации</p>
+<p>RESPONSE HEADERS</p>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса |</p>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string</td>
+<td>Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string</td>
+<td>Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string</td>
+<td>Код ошибки</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>403 Ошибка авторизации</p>
+<p>RESPONSE HEADERS</p>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string</td>
+<td>Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string</td>
+<td>Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string</td>
+<td>Код ошибки</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>422 Ошибка при обработке данных</p>
+<p>RESPONSE HEADERS</p>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string</td>
+<td>Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string</td>
+<td>Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td><code>errorDetails</code> (required)</td>
+<td>object</td>
+<td>Дополнительные данные об ошибке</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>429 Слишком много запросов</p>
+<p>RESPONSE HEADERS</p>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string</td>
+<td>Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string</td>
+<td>Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string</td>
+<td>Код ошибки</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tabbed-block">
+<p>500 Ошибка сервера</p>
+<p>RESPONSE HEADERS</p>
+<p>| X-Request-Id (required)    | string   | Идентификатор запроса     |</p>
+<p>RESPONSE SCHEMA: application/json</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errorId</code> (required)</td>
+<td>string</td>
+<td>Уникальный идентификатор ошибки</td>
+</tr>
+<tr>
+<td><code>errorMessage</code> (required)</td>
+<td>string</td>
+<td>Текст ошибки</td>
+</tr>
+<tr>
+<td><code>errorCode</code> (required)</td>
+<td>string</td>
+<td>Код ошибки</td>
 </tr>
 </tbody>
 </table>
