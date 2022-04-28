@@ -50,6 +50,7 @@
  "birthdate": "2000-01-01",
  "sub": "923d4812-148c-45v4-a56b-eed15cdd2857",
  "name": "Иванов Олег",
+ "gender": "male"
  "phone_number": "+79998887766",
  "middle_name": "Юрьевич",
  "given_name": "Олег",

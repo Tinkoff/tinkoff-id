@@ -144,3 +144,31 @@ Responses
     | `errorId` (required)       | string | Уникальный идентификатор ошибки |
     | `errorMessage` (required)       | string | Текст ошибки |
     | `errorCode` (required)       | string | Код ошибки |
+
+Пример запроса
+
+```GET https://business.tinkoff.ru/openapi/api/v1/individual/addresses```
+
+Пример ответа
+
+```
+{
+  "addresses": [
+    {
+      "addressType": "REGISTRATION_ADDRESS",
+      "apartment": "100",
+      "city": "Г ЯРОСЛАВЛЬ",
+      "claddrCode": "1200000600010530123",
+      "country": "РОССИЯ",
+      "fiasCode": "567845f8-72vb-45f3-ad16-bd4d12e06162",
+      "house": "120",
+      "latitude": 57.1234,
+      "longitude": 39.5678,
+      "primary": false,
+      "region": "ЯРОСЛАВСКАЯ ОБЛ",
+      "street": "УЛ ПРАВДЫ",
+      "zipCode": "150001"
+    }
+  ]
+}
+```

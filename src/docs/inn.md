@@ -122,3 +122,16 @@ Responses
     | `errorId` (required)       | string | Уникальный идентификатор ошибки |
     | `errorMessage` (required)       | string | Текст ошибки |
     | `errorCode` (required)       | string | Код ошибки |
+
+Пример запроса
+
+```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/inn```
+
+
+Пример ответа
+
+```
+{
+  "inn": "123456789876"
+}
+```

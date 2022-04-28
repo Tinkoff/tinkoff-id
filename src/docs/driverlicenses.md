@@ -123,3 +123,20 @@ Responses
     | `errorId` (required)       | string | Уникальный идентификатор ошибки |
     | `errorMessage` (required)       | string | Текст ошибки |
     | `errorCode` (required)       | string | Код ошибки |
+
+Пример запроса
+
+```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/driver-licenses```
+
+Пример ответа
+
+```
+{
+  "licenses": [
+    {
+      "docNumber": "1122334455",
+      "issueDate": "2020-10-01"
+    }
+  ]
+}
+```

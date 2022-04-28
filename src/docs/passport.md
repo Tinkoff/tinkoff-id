@@ -131,3 +131,27 @@ Responses
     | `errorId` (required)       | string | Уникальный идентификатор ошибки |
     | `errorMessage` (required)       | string | Текст ошибки |
     | `errorCode` (required)       | string | Код ошибки |
+
+
+Пример запроса
+
+```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport```
+
+Пример ответа
+
+```
+{
+  "birthDate": "2020-09-01",
+  "birthPlace": "Г. МОСКВА",
+  "citizenship": "РФ",
+  "issueDate": "2020-09-01",
+  "maritalStatus": "Женат/замужем",
+  "marriageDate": "2020-09-01",
+  "numberOfChildren": 0,
+  "resident": true,
+  "serialNumber": "1234567890",
+  "unitCode": "123-456",
+  "unitName": "УМВД РОССИИ ПО Г. МОСКВЕ",
+  "validTo": "2020-09-01"
+}
+```

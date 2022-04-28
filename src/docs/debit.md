@@ -126,3 +126,25 @@ Responses
     | `errorId` (required)       | string | Уникальный идентификатор ошибки |
     | `errorMessage` (required)       | string | Текст ошибки |
     | `errorCode` (required)       | string | Код ошибки |
+
+Пример запроса
+
+```GET https://business.tinkoff.ru/openapi/api/v1/individual/accounts/debit```
+
+Пример ответа
+
+```
+{
+  "accounts": [
+    {
+      "name": "Иванов Иван Иванович",
+      "accountNumber": "40802123456789012345",
+      "bank": {
+        "bik": "044525974",
+        "corAccount": "30101810145250000974",
+        "name": "АО \"ТИНЬКОФФ БАНК\""
+      }
+    }
+  ]
+}
+```
