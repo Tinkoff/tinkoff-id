@@ -1,7 +1,7 @@
 
 #Сценарий WEB2WEB
 
-![Диаграмма взаимодействия](C:\Users\m.anikin\Documents\GitHub\tinkoff-id\src\docs\img\Diagram.png "Дига")
+![Диаграмма взаимодействия](C:/Users/m.anikin/Documents/GitHub/tinkoff-id/src/docs/img/Diagram.png "Дига")
 
 ##Процесс авторизации
 
