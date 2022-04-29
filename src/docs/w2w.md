@@ -1,7 +1,7 @@
 
 #Сценарий WEB2WEB
 
-![Диаграмма взаимодействия](https://business.cdn-tinkoff.ru/static/images/opensme/diagram_tid_w2w.png "Дига")
+![Диаграмма взаимодействия](../img/diagram_tid_w2w.png)
 
 ##Процесс авторизации
 
