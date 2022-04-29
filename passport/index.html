@@ -1012,6 +1012,24 @@
 </tr>
 </tbody>
 </table>
+<p>Пример запроса</p>
+<p><code>GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport</code></p>
+<p>Пример упешного (200) ответа:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;birthDate&quot;: &quot;2020-09-01&quot;,
+  &quot;birthPlace&quot;: &quot;Г. МОСКВА&quot;,
+  &quot;citizenship&quot;: &quot;РФ&quot;,
+  &quot;issueDate&quot;: &quot;2020-09-01&quot;,
+  &quot;maritalStatus&quot;: &quot;Женат/замужем&quot;,
+  &quot;marriageDate&quot;: &quot;2020-09-01&quot;,
+  &quot;numberOfChildren&quot;: 0,
+  &quot;resident&quot;: true,
+  &quot;serialNumber&quot;: &quot;1234567890&quot;,
+  &quot;unitCode&quot;: &quot;123-456&quot;,
+  &quot;unitName&quot;: &quot;УМВД РОССИИ ПО Г. МОСКВЕ&quot;,
+  &quot;validTo&quot;: &quot;2020-09-01&quot;
+}
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>400 Некорректный запрос</p>
@@ -1049,6 +1067,24 @@
 </tr>
 </tbody>
 </table>
+<p>Примеры ответа ошибкии 400:</p>
+<p>Ошибка при неправильно заполненном ИНН
+<div class="highlight"><pre><span></span><code>{
+  &quot;errorId&quot;: &quot;retw6789&quot;,
+  &quot;errorMessage&quot;: &quot;Некорректно заполнен ИНН&quot;,
+  &quot;errorCode&quot;: &quot;VALIDATION_ERROR&quot;
+}
+</code></pre></div></p>
+<p>Ошибка при неправильно переданном значении поля revenueTypeCode</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;errorId&quot;: &quot;cde4zxc5&quot;,
+  &quot;errorMessage&quot;: &quot;Ваш запрос невалиден&quot;,
+  &quot;errorCode&quot;: &quot;INVALID_DATA&quot;,
+  &quot;errorDetails&quot;: {
+    &quot;revenueTypeCode&quot;: &quot;expected revenueTypeCode to be within List(1, 2, 3), but was &#39;0&#39;&quot;
+  }
+}
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>401 Ошибка аутентификации</p>
@@ -1081,6 +1117,13 @@
 </tr>
 </tbody>
 </table>
+<p>Примеры ответа ошибкии 401:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;errorId&quot;: &quot;asdq3412&quot;,
+  &quot;errorMessage&quot;: &quot;Не хватает учетных данных&quot;,
+  &quot;errorCode&quot;: &quot;UNAUTHORIZED&quot;
+}
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>403 Ошибка авторизации</p>
@@ -1113,6 +1156,13 @@
 </tr>
 </tbody>
 </table>
+<p>Примеры ответа ошибкии 403:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;errorId&quot;: &quot;rtbe4567&quot;,
+  &quot;errorMessage&quot;: &quot;Неправильный Tls сертификат&quot;,
+  &quot;errorCode&quot;: &quot;FORBIDDEN&quot;
+}
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>422 Ошибка при обработке данных</p>
@@ -1150,6 +1200,13 @@
 </tr>
 </tbody>
 </table>
+<p>Примеры ответа ошибкии 422:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;errorId&quot;: &quot;bcde3412&quot;,
+  &quot;errorMessage&quot;: &quot;На балансе недостаточно средств&quot;,
+  &quot;errorCode&quot;: &quot;INSUFFICIENT_FUNDS&quot;
+}
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>429 Слишком много запросов</p>
@@ -1182,6 +1239,13 @@
 </tr>
 </tbody>
 </table>
+<p>Примеры ответа ошибкии 429:</p>
+<div class="highlight"><pre><span></span><code>{
+&quot;errorMessage&quot;: &quot;Слишком много запросов. Попробуйте позже&quot;,
+&quot;errorCode&quot;: &quot;TOO_MANY_REQUESTS&quot;,
+&quot;errorId&quot;: &quot;acdf000&quot;
+}
+</code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>500 Ошибка сервера</p>
@@ -1214,27 +1278,16 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-<p>Пример запроса</p>
-<p><code>GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport</code></p>
-<p>Пример ответа</p>
+<p>Примеры ответа ошибкии 500:</p>
 <div class="highlight"><pre><span></span><code>{
-  &quot;birthDate&quot;: &quot;2020-09-01&quot;,
-  &quot;birthPlace&quot;: &quot;Г. МОСКВА&quot;,
-  &quot;citizenship&quot;: &quot;РФ&quot;,
-  &quot;issueDate&quot;: &quot;2020-09-01&quot;,
-  &quot;maritalStatus&quot;: &quot;Женат/замужем&quot;,
-  &quot;marriageDate&quot;: &quot;2020-09-01&quot;,
-  &quot;numberOfChildren&quot;: 0,
-  &quot;resident&quot;: true,
-  &quot;serialNumber&quot;: &quot;1234567890&quot;,
-  &quot;unitCode&quot;: &quot;123-456&quot;,
-  &quot;unitName&quot;: &quot;УМВД РОССИИ ПО Г. МОСКВЕ&quot;,
-  &quot;validTo&quot;: &quot;2020-09-01&quot;
+  &quot;errorId&quot;: &quot;asdq3412&quot;,
+  &quot;errorMessage&quot;: &quot;Непредвиденная ошибка. Пожалуйста, попробуйте позже&quot;,
+  &quot;errorCode&quot;: &quot;INTERNAL_ERROR&quot;
 }
 </code></pre></div>
+</div>
+</div>
+</div>
 
               
             </article>
