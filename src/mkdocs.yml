@@ -2,8 +2,8 @@ site_name: Tinkoff ID Документация
 theme:
   name: material
   language: 'ru'
-  theme:
-    logo: logo.png
+  logo: assets/logo.png
+
 
   features:
     - content.code.annotate
