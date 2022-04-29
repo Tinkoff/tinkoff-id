@@ -20,8 +20,7 @@ Responses
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `type` (required)       | string (BundleCode) | Enum: `PRO` `PREMIUM` `PRIVATE` `DEFAULT` 
-    Тип подписки |
+    | `type` (required)       | string (BundleCode) | Enum: `PRO` `PREMIUM` `PRIVATE` `DEFAULT` - Тип подписки |
 
     Пример запроса
 
