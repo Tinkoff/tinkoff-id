@@ -3,7 +3,7 @@ theme:
   name: material
   language: 'ru'
   theme:
-    logo: img/logo.png
+    logo: logo.png
 
   features:
     - content.code.annotate
