@@ -2,6 +2,9 @@ site_name: Tinkoff ID Документация
 theme:
   name: material
   language: 'ru'
+  theme:
+    logo: img/logo.png
+
   features:
     - content.code.annotate
     # - content.tabs.link
