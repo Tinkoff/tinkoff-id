@@ -979,6 +979,12 @@
 </ul>
 <p>Пример запроса</p>
 <p><code>POST https://id.tinkoff.ru/userinfo/userinfo</code></p>
+<div class="highlight"><pre><span></span><code>curl -v --location --request POST ‘https://id.tinkoff.ru/userinfo/userinfo’ \
+--header ‘Authorization: Bearer t.***********************************************************************’ \
+--header ‘Content-Type: application/x-www-form-urlencoded’ \
+--data-urlencode ‘client_id=*****’ \
+--data-urlencode ‘client_secret=**************************’ 
+</code></pre></div>
 <p>Пример ответа</p>
 <div class="highlight"><pre><span></span><code>{
  &quot;email&quot;: &quot;tinkoff@mail.ru&quot;,
