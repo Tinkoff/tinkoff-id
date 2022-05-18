@@ -41,6 +41,14 @@
 
 ```POST https://id.tinkoff.ru/userinfo/userinfo```
 
+```
+curl -v --location --request POST ‘https://id.tinkoff.ru/userinfo/userinfo’ \
+--header ‘Authorization: Bearer t.***********************************************************************’ \
+--header ‘Content-Type: application/x-www-form-urlencoded’ \
+--data-urlencode ‘client_id=*****’ \
+--data-urlencode ‘client_secret=**************************’ 
+```
+
 Пример ответа
 
 ```
