@@ -1,5 +1,5 @@
 
-# JavaScript SDK
+# Tinkoff ID Widget
 
 ## Рекомендации по интеграции Tinkoff ID
 Прежде, чем преступить к добавлению кнопки на сайте, рекомендуем ознакомиться с [Рекомендации по интеграции Tinkoff ID](https://www.tinkoff.ru/corporate/business-solutions/open-api/tinkoff-id/integration/instruction/)
