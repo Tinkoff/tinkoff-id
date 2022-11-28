@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -17,7 +17,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.472b142f.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
@@ -560,8 +560,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../javascript_sdk/" class="md-nav__link">
-        JavaScript SDK
+      <a href="../widget/" class="md-nav__link">
+        Tinkoff ID Widget
       </a>
     </li>
   
@@ -997,16 +997,20 @@
 
 
 <h1 id="web2web">Сценарий WEB2WEB</h1>
+<p>Для начала интеграции необходима установка <a href="../widget/">Tinkoff ID Widget</a></p>
 <p><img alt="Диаграмма взаимодействия" src="../img/diagram_tid_w2w.png" /></p>
 <h2 id="_1">Процесс авторизации</h2>
-<p>1) Пользователь инициирует процесс авторизации, нажимая кнопку "Войти с Тинькофф" на сайте или в приложении партнера.<br />
-2) Партнерский сервис должен сгенерировать параметр <code>state</code> и связать его с браузером пользователя для защиты от CSRF-атак. Подробнее об этом можно почитать <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-14#section-4.7">здесь.</a><br />
-3) Инициализация авторизации осуществляетяс вызвом метода <code>GET https://id.tinkoff.ru/auth/authorize</code> со следующими параметрами:
-* client_id: идентификатор, который вы получили после регистрации
-* redirect_uri: <code>https://myintegration.ru/auth/complete</code>
-* state: строка из пункта 2
-* response_type: <code>code</code>
-* scope_parameters (<strong>для Tinkoff Business ID</strong>): URL закодированный json с ИНН и КПП компании клиента. Эти данные необходимы для того, чтобы уметь однозначно определять к какой именно компании давать доступ клиенту. Если у компании клиента нет КПП, передайте вместо него "0". Пример JSON до кодирования:</p>
+<ol>
+<li>Партнер инициализирует Tinkoff ID Widget, с помощью которого отрисовывается кнопка "Войти с Тинькофф".</li>
+<li>Пользователь инициирует процесс авторизации, нажимая кнопку "Войти с Тинькофф" на сайте или в приложении партнера.  </li>
+<li>Партнерский сервис должен сгенерировать параметр <code>state</code> и связать его с браузером пользователя для защиты от CSRF-атак. Подробнее об этом можно почитать <a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-14#section-4.7">здесь.</a>  </li>
+<li>Инициализация авторизации осуществляется вызовом метода <code>GET https://id.tinkoff.ru/auth/authorize</code> со следующими параметрами:</li>
+<li>client_id: идентификатор, который вы получили после регистрации</li>
+<li>redirect_uri: <code>https://myintegration.ru/auth/complete</code></li>
+<li>state: строка из пункта 2</li>
+<li>response_type: <code>code</code></li>
+<li>scope_parameters (<strong>для Tinkoff Business ID</strong>): URL закодированный json с ИНН и КПП компании клиента. Эти данные необходимы для того, чтобы уметь однозначно определять к какой именно компании давать доступ клиенту. Если у компании клиента нет КПП, передайте вместо него "0". Пример JSON до кодирования:</li>
+</ol>
 <div class="highlight"><pre><span></span><code>{ 
     &quot;inn&quot; : &quot;9999980892&quot;, 
     &quot;kpp&quot; : &quot;999991001&quot; 
@@ -1015,19 +1019,31 @@
 <p>Пример запроса:</p>
 <p><div class="highlight"><pre><span></span><code>GET https://id.tinkoff.ru/auth/authorize?client_id=%client_id%&amp;redirect_uri=https://myintegration.ru/auth/complete&amp;state=ABCxyz&amp;response_type=code&amp;scope_parameters=%20%7B%20%22inn%22%20:%20%227743180892%22,%20%22kpp%22%20:%20%22773101001%22%20%7D
 </code></pre></div>
-4) Отображение экрана аутентификации в Тинькофф. Для веб-приложений это окно id.tinkoff.ru для ввода номера телефона, для мобильных приложений - экран ввода кода.   </p>
-<p>5) Пользователь вводит данные для прохождения аутентификации.   </p>
-<p>6) Пользователю отображается экран с выбором доступов, которые он предоставляет партнеру:  </p>
+5. Отображение экрана аутентификации в Тинькофф. Для веб-приложений это окно id.tinkoff.ru для ввода номера телефона, для мобильных приложений - экран ввода кода.   </p>
+<ol>
+<li>
+<p>Пользователь вводит данные для прохождения аутентификации.   </p>
+</li>
+<li>
+<p>Пользователю отображается экран с выбором доступов, которые он предоставляет партнеру:  </p>
+</li>
+</ol>
 <p><strong>Tinkoff ID</strong>
 <img alt="" src="https://business.cdn-tinkoff.ru/static/images/opensme/partner-script.jpg" /></p>
 <p><strong>Tinkoff Business ID</strong>
 <img alt="" src="https://business.cdn-tinkoff.ru/static/images/opensme/consents-pop-up.jpg" /></p>
-<p>7) Пользователь нажимает на кнопку "Продолжить", соглашаясь с передачей данных. В зависимости от настроек партнерского приложения, у пользователя есть возможность снятия чекбокса с данными, которые он не готов предоставить.
+<ol>
+<li>
+<p>Пользователь нажимает на кнопку "Продолжить", соглашаясь с передачей данных. В зависимости от настроек партнерского приложения, у пользователя есть возможность снятия чекбокса с данными, которые он не готов предоставить.
 Если у пользователя напротив всех полей есть включенный чекбокс, то при нажатии "Продолжить", в следующих авторизациях это окно открываться не будет.</p>
-<p>8) . На <code>https://myintegration.ru/auth/complete</code> придет запрос вида:  </p>
+</li>
+<li>
+<p>На <code>https://myintegration.ru/auth/complete</code> придет запрос вида:  </p>
+</li>
+</ol>
 <p><div class="highlight"><pre><span></span><code>https://myintegration.ru/auth/complete?state=ABCxyz&amp;code=c.1aGiAXX3Ni&amp;session_state=hXXXXXXY3kgs3nx0H3RTj3JzCSrdaqaDhU6lS8XXXXX.i4kl6dsEB1SQogzq0Nj0
 </code></pre></div>
-9. Партнерское приложение должно провалидировать параметр <code>state</code> для сверки со значением в первоначальном запросе. Если валидация прошла успешно, необходимо забрать значение параметра <code>code</code> для дальнейшего обмена на токены</p>
+10. Партнерское приложение должно провалидировать параметр <code>state</code> для сверки со значением в первоначальном запросе. Если валидация прошла успешно, необходимо забрать значение параметра <code>code</code> для дальнейшего обмена на токены</p>
 <ol>
 <li>Для получения Access и Refresh токенов необходимо вызвать метод <code>POST https://id.tinkoff.ru/auth/token</code>.</li>
 </ol>
