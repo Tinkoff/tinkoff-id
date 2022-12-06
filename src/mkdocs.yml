@@ -2,6 +2,9 @@ site_name: Tinkoff ID Документация
 theme:
   name: material
   language: 'ru'
+  logo: img/logo.png
+
+
   features:
     - content.code.annotate
     # - content.tabs.link
@@ -18,33 +21,56 @@ theme:
     - search.share
     - search.suggest
     - toc.follow
+    - content.tabs.link
+    - navigation.instant
+  
   palette:
-    - scheme: default
-      primary: yellow
+    - scheme: slate
+      primary: amber
       accent: indigo
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
-    - scheme: slate
-      primary: yellow
+    - scheme: default
+      primary: amber
       accent: indigo
       toggle:
          icon: material/toggle-switch-off-outline
          name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - tables
+
+
 nav:    
   - Обзор: index.md
   - Менеджеру:
     - Преимущества: adv.md
     - Описание продукта: managers.md
-    - Связанные решения: devs.md
+    - Связанные решения: cross.md
     - Как подключить сервис: join.md
     - Документы: tech_ank.md
   - Разработчику: 
     - Авторизация: w2w.md
     - Мобильная авторизация: mobile.md
+    - Tinkoff ID Widget: widget.md
     - Работа с полученными токенами: tokens.md
     - Метчинг учеток: matching.md
     - Тестирование: testing.md
+  - Методы:
+    - Информация о пользователе: userinfo.md
+    - Получить паспортные данные: passport.md
+    - Получить водительские удостоверения: driverlicenses.md
+    - Получить ИНН: inn.md
+    - Получить СНИЛС: snils.md
+    - Получить адреса: addresses.md
+    - Получить информацию об идентификации пользователя: identification.md
+    - Получить статус самозанятого: selfemployed.md
+    - Получить информацию об активных дебетовых счетах: debit.md
+    - Получить информацию об активной подписке клиента: subscription
   - Новости: 
     - Новости продукта: news.md
     - Ползные статьи: articles.md
