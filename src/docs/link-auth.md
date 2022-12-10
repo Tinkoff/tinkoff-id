@@ -2,60 +2,35 @@
 # Ссылочная авторизация
 
 ## Зачем нужна ссылочная авторизация?
-Прежде, чем преступить к добавлению кнопки на сайте, рекомендуем ознакомиться с [Рекомендации по интеграции Tinkoff ID](https://www.tinkoff.ru/corporate/business-solutions/open-api/tinkoff-id/integration/instruction/)
+Ссылочная авторизация помогает в организации бесшовного перехода из мобильных приложений Тинькофф банка (Например: [Долями](https://dolyame.ru/) или раздела Target) в свое приложение с сохранением авторизации.
 
-## Подключение библиотеки на сайте
-Для подключения на сайте необходимо вставить в блок **head** следующий скрипт:
-```html
-<script src="https://business.cdn-tinkoff.ru/static/projects/tinkoff-id/widget/bundle.js"></script>
-```
+Для начала работы необходимо иметь интеграцию Tinkoff ID в своем приложении или веб-сайте:[Как подключить Tinkoff ID?](https://tinkoff.github.io/tinkoff-id/join/)  
 
-## Пример инициализации скрипта
+## Интеграция для веб-сайта
+
+Приложение Tinkoff создает ссылку на вас содержащую параметр tid_link_token. 
 ```javascript
-const authParams = {
-  redirectUri: 'https://mysite.ru/auth/success',
-  responseType: 'code',
-  scopeParameters: '',
-  clientId: 'XXXX',
-  state: 'XXXX'
-}
+ https://partner?tid_link_token=xxxx
+ ```
 
-const uiParams = {
-  container: '#container-for-tid-button',
-  size: 'm',
-  color: 'primary',
-  text: 'Tinkoff',
-}
+Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id по ссылке.
+Для этого нужно в запросе /authorize к SSO передать полученный ссылочный токен в query параметре auth_token.
 
-const tidSdk = new TidSDK(authParams);
-
-tidSdk.addButton(uiParams);
+```javascript
+https://id.tinkoff.ru/auth/authorize?client_id=tid_zoopt&redirect_uri=https://zoopt.ru/local/modules/salin.core/include/tinkoff-auth.php&state=123abc&response_type=code&auth_token=HjRFwJsxKcrNJkfwHgR66L1VFCCnpy 
 ```
 
-![Результат](../img/tinkoff_id_button.png)
+После чего пользователю не потребуется ввод одноразового кода с телефона, а только лишь подтверждение скопов данных (в первый раз – далее нет).
 
 
-## Описание параметров
-### Auth Params
-  - **redirectUri** `string` - Uri, на который будет перенаправлен клиент после завершения авторизационного диалога
-  - **responseType** `string` - Определяет какой авторизационный процесс будет запущен и какие параметры будут переданы по завершению авторизации
-  - **scopeParameters** `string` (необязательный параметр) - Набор данных, указанный партнером в технической анкете
-  - **clientId** `string` - Идентификатор клиента (приложения)
-  - **state** `string` - Строка, генерируемая на стороне клиента для связи контекста запуска авторизации с завершением
 
-### UI Params
-  - **container** `string | HTMLElement` - элемент-контейнер, внутри которого располагается кнопка. Пример: `#container`, `.container` или же сам элемент
-  - **size** `string` - размер кнопки. Поддерживаются следующие размеры: `xs`, `s`, `m` и `l`
-  - **color** `string` - цвет кнопки. Поддерживаются следующие цвета: `primary`, `black`, `grey` и `business`
-  - **text** `string` (необязательный параметр) - текст слева от логотипа. По умолчанию используется "Войти с Тинькофф"
+## Интеграция для приложения
 
-## FAQ
-### Кнопка отображается не так, как хотелось бы
-Для кастомизации кнопки под свой дизайн, можно переопределить стили кнопки. Для этого в css файле добавьте соответствующие классы.
-Например:
-```css
-.tid-4PNRE-button-primary {
-  background-color: red;
-}
-```
-поменяет цвет кнопки на красный
+Приложение Tinkoff создает applink на вас содержащий параметр tid_link_token. 
+```javascript
+ appname://partner?tid_link_token
+ ```
+
+Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id инициализируя [SDK](https://tinkoff.github.io/tinkoff-id/mobile/) 
+
+После чего пользователя направит для аутентификации обратно в наше мобильное приложение и предложит согласится со скопами передаваемых данных (при первичной авторизации).
