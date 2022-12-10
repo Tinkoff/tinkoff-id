@@ -56,6 +56,7 @@ nav:
   - Разработчику: 
     - Авторизация: w2w.md
     - Мобильная авторизация: mobile.md
+    - Ссылочная авторизация: link-auth.md
     - Tinkoff ID Widget: widget.md
     - Работа с полученными токенами: tokens.md
     - Метчинг учеток: matching.md
