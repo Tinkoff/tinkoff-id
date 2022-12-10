@@ -562,63 +562,16 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    Интеграция для веб-сайта
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    Подключение библиотеки на сайте
+    Интеграция для приложения
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    Пример инициализации скрипта
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    Описание параметров
-  </a>
-  
-    <nav class="md-nav" aria-label="Описание параметров">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#auth-params" class="md-nav__link">
-    Auth Params
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ui-params" class="md-nav__link">
-    UI Params
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    FAQ
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    Кнопка отображается не так, как хотелось бы
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1059,63 +1012,16 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    Интеграция для веб-сайта
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    Подключение библиотеки на сайте
+    Интеграция для приложения
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    Пример инициализации скрипта
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    Описание параметров
-  </a>
-  
-    <nav class="md-nav" aria-label="Описание параметров">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#auth-params" class="md-nav__link">
-    Auth Params
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ui-params" class="md-nav__link">
-    UI Params
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#faq" class="md-nav__link">
-    FAQ
-  </a>
-  
-    <nav class="md-nav" aria-label="FAQ">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    Кнопка отображается не так, как хотелось бы
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1136,57 +1042,26 @@
 
 <h1 id="_1">Ссылочная авторизация</h1>
 <h2 id="_2">Зачем нужна ссылочная авторизация?</h2>
-<p>Прежде, чем преступить к добавлению кнопки на сайте, рекомендуем ознакомиться с <a href="https://www.tinkoff.ru/corporate/business-solutions/open-api/tinkoff-id/integration/instruction/">Рекомендации по интеграции Tinkoff ID</a></p>
-<h2 id="_3">Подключение библиотеки на сайте</h2>
-<p>Для подключения на сайте необходимо вставить в блок <strong>head</strong> следующий скрипт:
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://business.cdn-tinkoff.ru/static/projects/tinkoff-id/widget/bundle.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<p>Ссылочная авторизация помогает в организации бесшовного перехода из мобильных приложений Тинькофф банка (Например: <a href="https://dolyame.ru/">Долями</a> или раздела Target) в свое приложение с сохранением авторизации.</p>
+<p>Для начала работы необходимо иметь интеграцию Tinkoff ID в своем приложении или веб-сайте:<a href="https://tinkoff.github.io/tinkoff-id/join/">Как подключить Tinkoff ID?</a>  </p>
+<h2 id="-">Интеграция для веб-сайта</h2>
+<p>Приложение Tinkoff создает ссылку на вас содержащую параметр tid_link_token. 
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nx">https</span><span class="o">:</span><span class="c1">//partner?tid_link_token=xxxx</span><span class="w"></span>
+<span class="w"> </span><span class="sb">```</span>
+
+<span class="sb">Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id по ссылке.</span>
+<span class="sb">Для этого нужно в запросе /authorize к SSO передать полученный ссылочный токен в query параметре auth_token.</span>
+
+<span class="sb">```</span><span class="nx">javascript</span><span class="w"></span>
+<span class="nx">https</span><span class="o">:</span><span class="c1">//id.tinkoff.ru/auth/authorize?client_id=tid_zoopt&amp;redirect_uri=https://zoopt.ru/local/modules/salin.core/include/tinkoff-auth.php&amp;state=123abc&amp;response_type=code&amp;auth_token=HjRFwJsxKcrNJkfwHgR66L1VFCCnpy </span><span class="w"></span>
 </code></pre></div></p>
-<h2 id="_4">Пример инициализации скрипта</h2>
-<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">authParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">redirectUri</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://mysite.ru/auth/success&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">responseType</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;code&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">scopeParameters</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">clientId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;XXXX&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">state</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;XXXX&#39;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">uiParams</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nx">container</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#container-for-tid-button&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;primary&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Tinkoff&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">const</span><span class="w"> </span><span class="nx">tidSdk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">TidSDK</span><span class="p">(</span><span class="nx">authParams</span><span class="p">);</span><span class="w"></span>
-
-<span class="nx">tidSdk</span><span class="p">.</span><span class="nx">addButton</span><span class="p">(</span><span class="nx">uiParams</span><span class="p">);</span><span class="w"></span>
-</code></pre></div>
-<p><img alt="Результат" src="../img/tinkoff_id_button.png" /></p>
-<h2 id="_5">Описание параметров</h2>
-<h3 id="auth-params">Auth Params</h3>
-<ul>
-<li><strong>redirectUri</strong> <code>string</code> - Uri, на который будет перенаправлен клиент после завершения авторизационного диалога</li>
-<li><strong>responseType</strong> <code>string</code> - Определяет какой авторизационный процесс будет запущен и какие параметры будут переданы по завершению авторизации</li>
-<li><strong>scopeParameters</strong> <code>string</code> (необязательный параметр) - Набор данных, указанный партнером в технической анкете</li>
-<li><strong>clientId</strong> <code>string</code> - Идентификатор клиента (приложения)</li>
-<li><strong>state</strong> <code>string</code> - Строка, генерируемая на стороне клиента для связи контекста запуска авторизации с завершением</li>
-</ul>
-<h3 id="ui-params">UI Params</h3>
-<ul>
-<li><strong>container</strong> <code>string | HTMLElement</code> - элемент-контейнер, внутри которого располагается кнопка. Пример: <code>#container</code>, <code>.container</code> или же сам элемент</li>
-<li><strong>size</strong> <code>string</code> - размер кнопки. Поддерживаются следующие размеры: <code>xs</code>, <code>s</code>, <code>m</code> и <code>l</code></li>
-<li><strong>color</strong> <code>string</code> - цвет кнопки. Поддерживаются следующие цвета: <code>primary</code>, <code>black</code>, <code>grey</code> и <code>business</code></li>
-<li><strong>text</strong> <code>string</code> (необязательный параметр) - текст слева от логотипа. По умолчанию используется "Войти с Тинькофф"</li>
-</ul>
-<h2 id="faq">FAQ</h2>
-<h3 id="_6">Кнопка отображается не так, как хотелось бы</h3>
-<p>Для кастомизации кнопки под свой дизайн, можно переопределить стили кнопки. Для этого в css файле добавьте соответствующие классы.
-Например:
-<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="nc">tid-4PNRE-button-primary</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">red</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</code></pre></div>
-поменяет цвет кнопки на красный</p>
+<p>После чего пользователю не потребуется ввод одноразового кода с телефона, а только лишь подтверждение скопов данных (в первый раз – далее нет).</p>
+<h2 id="_3">Интеграция для приложения</h2>
+<p>Приложение Tinkoff создает applink на вас содержащий параметр tid_link_token. 
+<code>javascript
+ appname://partner?tid_link_token</code></p>
+<p>Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id инициализируя <a href="https://tinkoff.github.io/tinkoff-id/mobile/">SDK</a> </p>
+<p>После чего пользователя направит для аутентификации обратно в наше мобильное приложение и предложит согласится со скопами передаваемых данных (при первичной авторизации).</p>
 
 
 
