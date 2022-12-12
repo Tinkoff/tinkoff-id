@@ -29,7 +29,7 @@ const uiParams = {
 
 const tidSdk = new TidSDK(authParams);
 
-tidSdk.addButton(uiParams);
+tidSdk.add(uiParams);
 ```
 
 ![Результат](../img/tinkoff_id_button.png)
