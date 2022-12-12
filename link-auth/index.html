@@ -1047,19 +1047,16 @@
 <h2 id="-">Интеграция для веб-сайта</h2>
 <p>Приложение Tinkoff создает ссылку на вас содержащую параметр tid_link_token. 
 <div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nx">https</span><span class="o">:</span><span class="c1">//partner?tid_link_token=xxxx</span><span class="w"></span>
-<span class="w"> </span><span class="sb">```</span>
-
-<span class="sb">Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id по ссылке.</span>
-<span class="sb">Для этого нужно в запросе /authorize к SSO передать полученный ссылочный токен в query параметре auth_token.</span>
-
-<span class="sb">```</span><span class="nx">javascript</span><span class="w"></span>
-<span class="nx">https</span><span class="o">:</span><span class="c1">//id.tinkoff.ru/auth/authorize?client_id=tid_zoopt&amp;redirect_uri=https://zoopt.ru/local/modules/salin.core/include/tinkoff-auth.php&amp;state=123abc&amp;response_type=code&amp;auth_token=HjRFwJsxKcrNJkfwHgR66L1VFCCnpy </span><span class="w"></span>
 </code></pre></div></p>
+<p>Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id по ссылке.
+Для этого нужно в запросе /authorize к SSO передать полученный ссылочный токен в query параметре auth_token.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">https</span><span class="o">:</span><span class="c1">//id.tinkoff.ru/auth/authorize?client_id=&amp;redirect_uri=&amp;state=123abc&amp;response_type=code&amp;auth_token= </span><span class="w"></span>
+</code></pre></div>
 <p>После чего пользователю не потребуется ввод одноразового кода с телефона, а только лишь подтверждение скопов данных (в первый раз – далее нет).</p>
 <h2 id="_3">Интеграция для приложения</h2>
 <p>Приложение Tinkoff создает applink на вас содержащий параметр tid_link_token. 
-<code>javascript
- appname://partner?tid_link_token</code></p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nx">appname</span><span class="o">:</span><span class="c1">//partner?tid_link_token</span><span class="w"></span>
+</code></pre></div></p>
 <p>Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id инициализируя <a href="https://tinkoff.github.io/tinkoff-id/mobile/">SDK</a> </p>
 <p>После чего пользователя направит для аутентификации обратно в наше мобильное приложение и предложит согласится со скопами передаваемых данных (при первичной авторизации).</p>
 
