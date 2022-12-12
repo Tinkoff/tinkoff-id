@@ -11,13 +11,14 @@
 Приложение Tinkoff создает ссылку на вас содержащую параметр tid_link_token. 
 ```javascript
  https://partner?tid_link_token=xxxx
- ```
+ 
+```
 
 Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id по ссылке.
 Для этого нужно в запросе /authorize к SSO передать полученный ссылочный токен в query параметре auth_token.
 
 ```javascript
-https://id.tinkoff.ru/auth/authorize?client_id=tid_zoopt&redirect_uri=https://zoopt.ru/local/modules/salin.core/include/tinkoff-auth.php&state=123abc&response_type=code&auth_token=HjRFwJsxKcrNJkfwHgR66L1VFCCnpy 
+https://id.tinkoff.ru/auth/authorize?client_id=&redirect_uri=&state=123abc&response_type=code&auth_token= 
 ```
 
 После чего пользователю не потребуется ввод одноразового кода с телефона, а только лишь подтверждение скопов данных (в первый раз – далее нет).
@@ -29,7 +30,7 @@ https://id.tinkoff.ru/auth/authorize?client_id=tid_zoopt&redirect_uri=https://zo
 Приложение Tinkoff создает applink на вас содержащий параметр tid_link_token. 
 ```javascript
  appname://partner?tid_link_token
- ```
+```
 
 Вам необходимо проверять входящие ссылки на наличие данного параметра и в случае его нахождения запускать автоматически сценарий авторизации через tinkoff id инициализируя [SDK](https://tinkoff.github.io/tinkoff-id/mobile/) 
 
