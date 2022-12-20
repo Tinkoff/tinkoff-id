@@ -1071,6 +1071,7 @@
 <span class="w">  </span><span class="nx">size</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="nx">color</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;primary&#39;</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Tinkoff&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nx">target</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;_self&#39;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kd">const</span><span class="w"> </span><span class="nx">tidSdk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">TidSDK</span><span class="p">(</span><span class="nx">authParams</span><span class="p">);</span><span class="w"></span>
@@ -1090,9 +1091,10 @@
 <h3 id="ui-params">UI Params</h3>
 <ul>
 <li><strong>container</strong> <code>string | HTMLElement</code> - элемент-контейнер, внутри которого располагается кнопка. Пример: <code>#container</code>, <code>.container</code> или же сам элемент</li>
-<li><strong>size</strong> <code>string</code> - размер кнопки. Поддерживаются следующие размеры: <code>xs</code>, <code>s</code>, <code>m</code> и <code>l</code></li>
-<li><strong>color</strong> <code>string</code> - цвет кнопки. Поддерживаются следующие цвета: <code>primary</code>, <code>black</code>, <code>grey</code> и <code>business</code></li>
-<li><strong>text</strong> <code>string</code> (необязательный параметр) - текст слева от логотипа. По умолчанию используется "Войти с Тинькофф"</li>
+<li><strong>size</strong> <code>xs</code> | <code>s</code> | <code>m</code> | <code>l</code> - размер кнопки</li>
+<li><strong>color</strong> <code>primary</code> | <code>black</code> | <code>grey</code> | <code>business</code> - цвет кнопки</li>
+<li><strong>text</strong> <code>string</code> (необязательный параметр, по умолчанию используется "Войти с Тинькофф") - текст слева от логотипа</li>
+<li><strong>target</strong> <code>_parent</code> | <code>_self</code> | <code>_blank</code> | <code>_top</code> (необязательный параметр, по умолчанию используется <code>_blank</code>) - определеяет, в каком окне будет открываться форма авторизации. Если необходимо открывать окно вместо текущей вкладки, используйте <code>_self</code></li>
 </ul>
 <h2 id="faq">FAQ</h2>
 <h3 id="_4">Кнопка отображается не так, как хотелось бы</h3>
