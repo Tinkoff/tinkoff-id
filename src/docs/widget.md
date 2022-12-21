@@ -25,14 +25,15 @@ const uiParams = {
   size: 'm',
   color: 'primary',
   text: 'Tinkoff',
+  target: '_self'
 }
 
 const tidSdk = new TidSDK(authParams);
 
-tidSdk.addButton(uiParams);
+tidSdk.add(uiParams);
 ```
 
-![Результат](../img/tinkoff_id_button.png)
+![Результат](./img/tinkoff_id_button.png)
 
 
 ## Описание параметров
@@ -45,9 +46,10 @@ tidSdk.addButton(uiParams);
 
 ### UI Params
   - **container** `string | HTMLElement` - элемент-контейнер, внутри которого располагается кнопка. Пример: `#container`, `.container` или же сам элемент
-  - **size** `string` - размер кнопки. Поддерживаются следующие размеры: `xs`, `s`, `m` и `l`
-  - **color** `string` - цвет кнопки. Поддерживаются следующие цвета: `primary`, `black`, `grey` и `business`
-  - **text** `string` (необязательный параметр) - текст слева от логотипа. По умолчанию используется "Войти с Тинькофф"
+  - **size** `xs` | `s` | `m` | `l` - размер кнопки
+  - **color** `primary` | `black` | `grey` | `business` - цвет кнопки
+  - **text** `string` (необязательный параметр, по умолчанию используется "Войти с Тинькофф") - текст слева от логотипа
+  - **target** `_parent` | `_self` | `_blank` | `_top` (необязательный параметр, по умолчанию используется `_blank`) - определеяет, в каком окне будет открываться форма авторизации. Если необходимо открывать окно вместо текущей вкладки, используйте `_self`
 
 ## FAQ
 ### Кнопка отображается не так, как хотелось бы
