@@ -15,7 +15,7 @@
  --- | --- | --- |
 Название сервсиа | Для понимания пользователю в какой сервис он вход | Techno-shoсk | 
 Краткое описание сервиса | Будет выводится в интерфейсах Tinkoff | Интернет-магазин электроники | 
-Web redirect_uri | Ссылка для перехода в ваш веб сервис после авторизации  | ✅https://www.techno-shock.ru/auth/tinkoff/callback/  ❌https://www.techno-shock.ru/auth/tinkoff/callback/  ❌https://example.com/  ❌http://oauth.example.com:8080/path  ❌http://127.0.0.1:1234/path  |
+Web redirect_uri | Ссылка для перехода в ваш веб сервис после авторизации  | ✅https://www.techno-shock.ru/auth/tinkoff/callback/  ❌https://localhost/auth/tinkoff/callback/  ❌https://example.com/  ❌http://oauth.example.com:8080/path  ❌http://127.0.0.1:1234/path   |
 Mobile redirect uri | Кастомная схема ссылки для перехода в ваше приложение после авторизации | ✅mobile://  ✅tsh://tinkoffauthorized  ❌https://... | 
 Логотип компании | Ссылка на картинку формата **.svg**  Если нет возможности передать ссылку на картинку, можно прикрепить картинку во вложения в письме и указать это в анкете  | https://acdn.tinkoff.ru/static/documents/703d269e-ec01-4187-9544-5f01fb27bbb6.png  или  "**Логотип во вложениях к письму**"| 
 Контакты технической поддержки сервиса | ФИО, e-mail, номер телефона не менее двух человек  Необходимо для быстрой коммуникации по техническим вопросам и д | Иванов Иван Иваныч i.ivanov@ts.com +7999999999 *Ведущий разработчик*  Петров Петр Петрович p.petrovics@ts.com +78888888888 *Менеджер проекта*  | 
