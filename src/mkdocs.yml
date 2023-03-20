@@ -57,7 +57,9 @@ nav:
     - Авторизация: w2w.md
     - Мобильная авторизация: mobile.md
     - Ссылочная авторизация: link-auth.md
-    - Tinkoff ID Widget: widget.md
+    - Tinkoff ID Widget Button: widget-button.md
+    - Tinkoff ID Widget White Label: widget-white-label.md
+    - Tinkoff ID Widget Notification: widget-notification.md
     - Работа с полученными токенами: tokens.md
     - Метчинг учеток: matching.md
     - Тестирование: testing.md

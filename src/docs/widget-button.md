@@ -1,5 +1,5 @@
 
-# Tinkoff ID Widget
+# Tinkoff ID Widget Button
 
 ## Рекомендации по интеграции Tinkoff ID
 Прежде, чем преступить к добавлению кнопки на сайте, рекомендуем ознакомиться с [Рекомендации по интеграции Tinkoff ID](https://www.tinkoff.ru/corporate/business-solutions/open-api/tinkoff-id/integration/instruction/)
@@ -45,7 +45,7 @@ tidSdk.add(uiParams);
   - **state** `string` - Строка, генерируемая на стороне клиента для связи контекста запуска авторизации с завершением
 
 ### UI Params
-  - **container** `string | HTMLElement` - элемент-контейнер, внутри которого располагается кнопка. Пример: `#container`, `.container` или же сам элемент
+  - **container** `string` | `HTMLElement` - элемент-контейнер, внутри которого располагается кнопка. Пример: `#container`, `.container` или же сам элемент
   - **size** `xs` | `s` | `m` | `l` - размер кнопки
   - **color** `primary` | `black` | `grey` | `business` - цвет кнопки
   - **text** `string` (необязательный параметр, по умолчанию используется "Войти с Тинькофф") - текст слева от логотипа

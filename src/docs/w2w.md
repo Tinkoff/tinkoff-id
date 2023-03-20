@@ -1,7 +1,7 @@
 
 # Сценарий WEB2WEB
 
-Для начала интеграции необходима установка [Tinkoff ID Widget](./widget.md)
+Для начала интеграции необходима установка [Tinkoff ID Widget Button](./widget-button.md)
 
 ![Диаграмма взаимодействия](../img/diagram_tid_w2w.png)
 
