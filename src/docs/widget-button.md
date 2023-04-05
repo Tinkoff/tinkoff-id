@@ -7,7 +7,7 @@
 ## Подключение библиотеки на сайте
 Для подключения на сайте необходимо вставить в блок **head** следующий скрипт:
 ```html
-<script src="https://business.cdn-tinkoff.ru/static/projects/tinkoff-id/widget/bundle.js"></script>
+<script src="https://business.cdn-tinkoff.ru/static/projects/tinkoff-id/widget.js"></script>
 ```
 
 ## Пример инициализации скрипта
@@ -30,10 +30,10 @@ const uiParams = {
 
 const tidSdk = new TidSDK(authParams);
 
-tidSdk.add(uiParams);
+tidSdk.addButton(uiParams);
 ```
 
-![Результат](../img/tinkoff_id_button.png)
+![Результат](./img/tinkoff_id_button.png)
 
 
 ## Описание параметров
