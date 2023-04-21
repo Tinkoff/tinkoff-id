@@ -1,0 +1,19 @@
+{
+  "name": "dmtrbskkv/tinkoff-auth",
+  "description": "Tinkoff auth for web",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "TinkoffAuth\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Dmitry Baskakov"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "ext-curl": "*"
+  }
+}

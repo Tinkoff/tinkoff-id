@@ -1,0 +1,100 @@
+.button-tinkoff {
+    transition: .12s;
+    cursor: pointer;
+}
+
+/* Yellow button */
+.button-tinkoff-yellow .button-tinkoff-background {
+    fill: #FFDD2D
+}
+
+.button-tinkoff-yellow:hover .button-tinkoff-background {
+    fill: #FCC521;
+}
+
+.button-tinkoff-yellow:active .button-tinkoff-background {
+    fill: #FAB619;
+}
+
+/* White button */
+.button-tinkoff-white .button-tinkoff-background {
+    fill: #F5F5F6;
+}
+
+.button-tinkoff-white:hover .button-tinkoff-background {
+    fill: #D8D8D8;
+}
+
+.button-tinkoff-white:active .button-tinkoff-background {
+    fill: #CECECF;
+}
+
+/* Black button */
+.button-tinkoff-black .button-tinkoff-background {
+    fill: #000;
+}
+
+.button-tinkoff-black:hover .button-tinkoff-background {
+    fill: #292929;
+}
+
+.button-tinkoff-black:active .button-tinkoff-background {
+    fill: #333333;
+}
+
+/*DEPRECATED:*/
+.button-tinkoff-auth {
+    font-family: 'Neue Haas', 'Helvetica', sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 14px;
+    color: #000;
+    border-radius: 8px;
+    background: #FFDD2D;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 0;
+    width: 220px;
+    box-sizing: border-box
+}
+
+.button-tinkoff-auth-small {
+    font-size: 10px;
+    padding: 8px 10px;
+    width: 170px;
+}
+
+.button-tinkoff-auth-large {
+    font-size: 18px;
+    padding: 16px 20px;
+    width: 290px;
+}
+
+.button-tinkoff-auth svg {
+    width: 38px;
+    height: auto
+}
+
+.button-tinkoff-auth-small svg {
+    width: 27px;
+}
+
+.button-tinkoff-auth-large svg {
+    width: 47px;
+}
+
+.button-tinkoff-auth span {
+    padding-right: 7px;
+    padding-top: 2px;
+    opacity: 0.8;
+}
+
+.button-tinkoff-auth-small span {
+    padding-right: 5px;
+}
+
+.button-tinkoff-auth-large span {
+    padding-right: 9px;
+}
