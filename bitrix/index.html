@@ -9,13 +9,17 @@
       
       
       
+        <link rel="prev" href="../widget-notification/">
+      
+      
+        <link rel="next" href="../wordpress/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.13">
     
     
       
-        <title>Полезные статьи о сервисах авторизации - Tinkoff ID Документация</title>
+        <title>Tinkoff ID Bitrix - Tinkoff ID Документация</title>
       
     
     
@@ -67,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#tinkoff-id-bitrix" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -99,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Полезные статьи о сервисах авторизации
+              Tinkoff ID  Bitrix
             
           </span>
         </div>
@@ -219,13 +223,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../w2w/" class="md-tabs__link">
+      <a href="../w2w/" class="md-tabs__link md-tabs__link--active">
         Разработчику
       </a>
     </li>
@@ -433,14 +439,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
         
@@ -473,7 +481,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Разработчику
@@ -568,11 +576,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../bitrix/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Tinkoff ID  Bitrix
       </a>
+      
     </li>
   
 
@@ -939,7 +957,31 @@
                   
 
 
-<h1 id="_1">Полезные статьи о сервисах авторизации</h1>
+<h1 id="tinkoff-id-bitrix">Tinkoff ID Bitrix</h1>
+<h1 id="_1">Бизнес описание продукта</h1>
+<p>Модуль Tinkoff ID для Bitrix позволяет легко и быстро подключить на ваш сайт полноценный функционал нашего сервиса, включающий в себя:
+- отображение нашей кнопки на интерфейсе;
+- обмен backend данными;
+- запрос данных пользователей согласно вашим бизнес-потребностям.</p>
+<h1 id="_2">Сценарий использования.</h1>
+<ol>
+<li>Напишите на почту tinkoff_id@tinkoff.ru. В письме укажите, что хотите подключить модуль Tinkoff ID Bitrix — в ответ мы пришлем документы для ознакомления.</li>
+<li>Подпишите заявление на подключение и заполните техническую анкету. Отправьте документы, как вам удобно: курьером, ответным письмом по эл. почте или через ЭДО.</li>
+<li>Подключите наш плагин Bitrix. Если у вас возникнут вопросы, можно написать нам на почту технической поддержки acq_help@tinkoff.ru — поможем разобраться.</li>
+</ol>
+<h1 id="_3">Техническое описание продукта.</h1>
+<h2 id="_4">Подключение модуля.</h2>
+<ul>
+<li>Для начала работы с модулем вам требуется на сервере с развернутым CMS Bitrix создать папку с названием: <code>tinkoffid</code></li>
+<li>Далее требуется скачать в созданную папку исходные файлы из репозитория <a href="https://github.com/Tinkoff/tinkoff-id/tree/master/tinkoff-auth">банка</a>.</li>
+<li>Войдите в режим "Администрирования" сайта (http://ВАШ_САЙТ/bitrix/admin/) и в разделе "Настройки" &gt; "Настройки продукта" &gt; "Настройки модулей" и выберете "Tinkoff ID".
+<img alt="Результат" src="../img/bitrix.png" /></li>
+<li>В открывшейся форме требуется указать полученный вами от менеджера банка client_id и client_secret.</li>
+<li>По желанию вы можете перейти на вкладку "Оформление" для правки визуальной составляющей кнопки.</li>
+</ul>
+<h2 id="_5">Публикация кнопки</h2>
+<p>Для вывода кнопки на сайте, необходимо в компонентах внутри темы Bitrix в требуемом месте разместить следующий код модуля:
+<code>&lt;?php $APPLICATION-&gt;IncludeComponent("tinkoff:id.button","",);?&gt;</code></p>
 
 
 
