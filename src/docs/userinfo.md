@@ -54,14 +54,16 @@ curl -v --location --request POST ‘https://id.tinkoff.ru/userinfo/userinfo’ 
 ```
 {
  "email": "tinkoff@mail.ru",
+ "email_verified": false,
  "family_name": "Иванов",
  "birthdate": "2000-01-01",
  "sub": "923d4812-148c-45v4-a56b-eed15cdd2857",
  "name": "Иванов Олег",
  "gender": "male"
  "phone_number": "+79998887766",
+ "phone_number_verified" : true,
  "middle_name": "Юрьевич",
- "given_name": "Олег",
+ "given_name": "Олег"
 }
 ```
 

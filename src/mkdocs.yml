@@ -60,6 +60,8 @@ nav:
     - Tinkoff ID Widget Button: widget-button.md
     - Tinkoff ID Widget White Label: widget-white-label.md
     - Tinkoff ID Widget Notification: widget-notification.md
+    - Tinkoff ID  Bitrix: bitrix.md
+    - Tinkoff ID  WordPress: wordpress.md
     - Работа с полученными токенами: tokens.md
     - Метчинг учеток: matching.md
     - Тестирование: testing.md
@@ -73,7 +75,7 @@ nav:
     - Получить информацию об идентификации пользователя: identification.md
     - Получить статус самозанятого: selfemployed.md
     - Получить информацию об активных дебетовых счетах: debit.md
-    - Получить информацию об активной подписке клиента: subscription
+    - Получить информацию об активной подписке клиента: subscription.md
   - FAQ: 
     - Часто задаваемые вопросы: faq.md
     - Глоссарий: glossary.md
