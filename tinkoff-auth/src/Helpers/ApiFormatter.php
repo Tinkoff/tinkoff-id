@@ -66,18 +66,21 @@ class ApiFormatter
     public static function formatUserinfoFull(array $data = [])
     {
         return [
-            Api::SCOPES_USERINFO             => self::getScopeDataSafely($data, Api::SCOPES_USERINFO),
-            Api::SCOPES_PASSPORT_SHORT       => self::getScopeDataSafely($data, Api::SCOPES_PASSPORT_SHORT),
-            Api::SCOPES_PASSPORT             => self::getScopeDataSafely($data, Api::SCOPES_PASSPORT),
-            Api::SCOPES_DRIVER_LICENSES      => self::getScopeDataSafely($data, Api::SCOPES_DRIVER_LICENSES),
-            Api::SCOPES_INN                  => self::getScopeDataSafely($data, Api::SCOPES_INN),
-            Api::SCOPES_SNILS                => self::getScopeDataSafely($data, Api::SCOPES_SNILS),
-            Api::SCOPES_ADDRESSES            => self::getScopeDataSafely($data, Api::SCOPES_ADDRESSES),
-            Api::SCOPES_IDENTIFICATION       => self::getScopeDataSafely($data, Api::SCOPES_IDENTIFICATION),
-            Api::SCOPES_SELF_EMPLOYED_STATUS => self::getScopeDataSafely($data, Api::SCOPES_SELF_EMPLOYED_STATUS),
-            Api::SCOPES_DEBIT_CARDS          => self::getScopeDataSafely($data, Api::SCOPES_DEBIT_CARDS),
-            Api::SCOPES_SUBSCRIPTION         => self::getScopeDataSafely($data, Api::SCOPES_SUBSCRIPTION),
-            Api::SCOPES_COBRAND_STATUS       => self::getScopeDataSafely($data, Api::SCOPES_COBRAND_STATUS),
+            Api::SCOPES_USERINFO               => self::getScopeDataSafely($data, Api::SCOPES_USERINFO),
+            Api::SCOPES_PASSPORT_SHORT         => self::getScopeDataSafely($data, Api::SCOPES_PASSPORT_SHORT),
+            Api::SCOPES_PASSPORT               => self::getScopeDataSafely($data, Api::SCOPES_PASSPORT),
+            Api::SCOPES_DRIVER_LICENSES        => self::getScopeDataSafely($data, Api::SCOPES_DRIVER_LICENSES),
+            Api::SCOPES_INN                    => self::getScopeDataSafely($data, Api::SCOPES_INN),
+            Api::SCOPES_SNILS                  => self::getScopeDataSafely($data, Api::SCOPES_SNILS),
+            Api::SCOPES_ADDRESSES              => self::getScopeDataSafely($data, Api::SCOPES_ADDRESSES),
+            Api::SCOPES_IDENTIFICATION         => self::getScopeDataSafely($data, Api::SCOPES_IDENTIFICATION),
+            Api::SCOPES_SELF_EMPLOYED_STATUS   => self::getScopeDataSafely($data, Api::SCOPES_SELF_EMPLOYED_STATUS),
+            Api::SCOPES_DEBIT_CARDS            => self::getScopeDataSafely($data, Api::SCOPES_DEBIT_CARDS),
+            Api::SCOPES_SUBSCRIPTION           => self::getScopeDataSafely($data, Api::SCOPES_SUBSCRIPTION),
+            Api::SCOPES_COBRAND_STATUS         => self::getScopeDataSafely($data, Api::SCOPES_COBRAND_STATUS),
+            Api::SCOPES_PUBLIC_OFFICIAL_PERSON => self::getScopeDataSafely($data, Api::SCOPES_PUBLIC_OFFICIAL_PERSON),
+            Api::SCOPES_FOREIGN_AGENT          => self::getScopeDataSafely($data, Api::SCOPES_FOREIGN_AGENT),
+            Api::SCOPES_BLACKLIST_STATUS       => self::getScopeDataSafely($data, Api::SCOPES_BLACKLIST_STATUS),
         ];
     }
 

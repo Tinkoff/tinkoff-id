@@ -94,6 +94,11 @@ class AuthFlow extends Controller
         $subscription = $credentials[Api::SCOPES_SUBSCRIPTION];
         $cobrand      = $credentials[Api::SCOPES_COBRAND_STATUS];
 
+        // Публичное должностное лицо, ин агент и есть ли в черных списках
+        $officialPerson  = $credentials[ Api::SCOPES_PUBLIC_OFFICIAL_PERSON ];
+        $foreignAgent    = $credentials[ Api::SCOPES_FOREIGN_AGENT ];
+        $blacklistStatus = $credentials[ Api::SCOPES_BLACKLIST_STATUS ];
+
         $userEntity->update($userID, [
             'NAME'                          => $userinfo['given_name'],
             'LAST_NAME'                     => $userinfo['family_name'],
@@ -109,6 +114,9 @@ class AuthFlow extends Controller
             'TINKOFF_AUTH_DEBITCARDS'       => $debitCards,
             'TINKOFF_AUTH_SUBSCRIPTION'     => $subscription,
             'TINKOFF_AUTH_COBRAND'          => $cobrand,
+            'TINKOFF_AUTH_OFFICIAL_PERSON'   => $officialPerson,
+            'TINKOFF_AUTH_FOREIGN_AGENT'     => $foreignAgent,
+            'TINKOFF_AUTH_BLACKLIST_STATUS'  => $blacklistStatus,
         ]);
 
         $userEntity->Authorize($userID);
