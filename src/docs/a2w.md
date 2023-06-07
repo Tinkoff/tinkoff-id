@@ -20,20 +20,20 @@
     * ```response_type: code```
     * ```response_mode=query```
      
-Пример запроса:
+    Пример запроса:
 
-```html
-GET https://id.tinkoff.ru/auth/authorize?client_id=%client_id%&redirect_uri=https://myintegration.ru/auth/complete&code_challenge={codeChallenge}&code_challenge_method=S256&response_type=code
-```
+    ```html
+    GET https://id.tinkoff.ru/auth/authorize?client_id=%client_id%&redirect_uri=https://myintegration.ru/auth/complete&code_challenge={codeChallenge}&code_challenge_method=S256&response_type=code
+    ```
 
 5. Отображение экрана аутентификации в Тинькофф  id.tinkoff.ru для ввода номера телефона.
 6. Пользователь вводит данные для прохождения аутентификации.
 7. Пользователь нажимает на кнопку "Продолжить", соглашаясь с передачей данных. В зависимости от настроек партнерского приложения, у пользователя есть возможность снятия чекбокса с данными, которые он не готов предоставить. Если у пользователя напротив всех полей есть включенный чекбокс, то при нажатии "Продолжить", в следующих авторизациях это окно открываться не будет.
 8. На ```https://myintegration.ru/auth/complete``` придет запрос вида:
 
-```html
-https://myintegration.ru/auth/complete?code_challenge={codeChallenge}&code_challenge_method=S256&code=c.1aGiAXX3Ni&session_state=hXXXXXXY3kgs3nx0H3RTj3JzCSrdaqaDhU6lS8XXXXX.i4kl6dsEB1SQogzq00
-```
+    ```html
+    https://myintegration.ru/auth/complete?code_challenge={codeChallenge}&code_challenge_method=S256&code=c.1aGiAXX3Ni&session_state=hXXXXXXY3kgs3nx0H3RTj3JzCSrdaqaDhU6lS8XXXXX.i4kl6dsEB1SQogzq00
+    ```
 
 9. По app link происходит переход в партнерское приложение с параметром ```code```
 10. Партнерское приложение должно провалидировать параметр ```code_verifier```  для сверки со значением в первоначальном запросе, если валидация прошла успешно, необходимо забрать значение параметра ```code``` для дальнейшего обмена на токены.
