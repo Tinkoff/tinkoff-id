@@ -7,17 +7,17 @@
 2. Пользователь инициирует процесс авторизации, нажимая кнопку "Войти с Тинькофф" на сайте или в приложении партнера.
 3. Партнерский сервис должен сгенерировать параметр ```code_verifier``` и ```code_challenge_method```, создает его преобразованную версию ```code_challenge```, которая получается с помощью применения преобразования ```code_challenge = code_challenge_method(code_verifier)```, где ```code_challenge_method``` является трансформирующей функцией.
 
-..- Почитать про хеширование параметра ```code_verifier``` можно [здесь](https://datatracker.ietf.org/doc/html/rfc7636#section-4.1).
-..- Необходимо использовать защиту Proof Key for Code Exchange ([PKCE](https://datatracker.ietf.org/doc/html/rfc7636)) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.
-..- Пример генератора: https://tonyxu-io.github.io/pkce-generator/
-..- Требуемая генерация: "base64_url(SHA256(code_verifier))"
+  - Почитать про хеширование параметра ```code_verifier``` можно [здесь](https://datatracker.ietf.org/doc/html/rfc7636#section-4.1).
+  - Необходимо использовать защиту Proof Key for Code Exchange ([PKCE](https://datatracker.ietf.org/doc/html/rfc7636)) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.
+  - Пример генератора: https://tonyxu-io.github.io/pkce-generator/
+  - Требуемая генерация: "base64_url(SHA256(code_verifier))"
 4. Инициализация авторизации осуществляется вызовом метода GET ```https://id.tinkoff.ru/auth/authorize``` со следующими параметрами:
 
-..- ```client_id```: идентификатор, который вы получили после регистрации
-..- ```mobile_redirect_url``` (app link в приложение, указанные в анкете) 
-..- ```code_verifier``` из пункта 3 
-..- ```response_type: code```
-..- ```response_mode=query```
+  - ```client_id```: идентификатор, который вы получили после регистрации
+  - ```mobile_redirect_url``` (app link в приложение, указанные в анкете) 
+  - ```code_verifier``` из пункта 3 
+  - ```response_type: code```
+  - ```response_mode=query```
 
 Пример запроса:
 
@@ -39,11 +39,11 @@ https://myintegration.ru/auth/complete?code_challenge={codeChallenge}&code_chall
 11. Для получения Access и Refresh токенов необходимо вызвать метод POST ```https://id.tinkoff.ru/auth/token```. 
 Формат запроса:
 
-..- Authorization: Basic, где username  соответствуют client_id  полученному на электронную почту. [Примеры составления в разных языках](https://gist.github.com/brandonmwest/a2632d0a65088a20c00a)
-..- Content-type: ```application/x-www-form-urlencoded```
-..- grant_type: ```authorization_code```
-..- redirect_uri: ```mobile_redirect_url``` (тот, который был направлен в ```authorize``` )
-..- ```code_verifier```
+  - Authorization: Basic, где username  соответствуют client_id  полученному на электронную почту. [Примеры составления в разных языках](https://gist.github.com/brandonmwest/a2632d0a65088a20c00a)
+  - Content-type: ```application/x-www-form-urlencoded```
+  - grant_type: ```authorization_code```
+  - redirect_uri: ```mobile_redirect_url``` (тот, который был направлен в ```authorize``` )
+  - ```code_verifier```
 12. Авторизационный сервер проверяет ```code_verifier``` на соответствие ```code_challenge``` и возвращает токены или отвечает ошибкой.
 
 Пример запроса на получение токена:
