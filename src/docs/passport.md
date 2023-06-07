@@ -1,6 +1,15 @@
-#Получить паспортные данные
+# Получить паспортные данные
 
 Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/passport/get```
+
+Тип документа может принимать одно из следующих значений:
+
+- PASSPORT - Паспорт РФ
+- FOREIGN_PASSPORT - Иностранный паспорт
+- FOREIGN_INTERNATIONAL_PASSPORT - Загран. паспорт иностранного гражданина
+- RF_INTERNATIONAL_PASSPORT - Загран. паспорт гражданина РФ
+- BIRTH_CERTIFICATE - Свидетельство о рождении
+- RF_RESIDENCE_PERMIT - Вид на жительство РФ
 
 AUTHORIZATIONS: httpAuth
 
@@ -74,30 +83,6 @@ Responses
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 
-    Примеры ответа ошибкии 400:
-
-    Ошибка при неправильно заполненном ИНН
-    ```
-    {
-      "errorId": "retw6789",
-      "errorMessage": "Некорректно заполнен ИНН",
-      "errorCode": "VALIDATION_ERROR"
-    }
-    ```
-
-    Ошибка при неправильно переданном значении поля revenueTypeCode
-
-    ```
-    {
-      "errorId": "cde4zxc5",
-      "errorMessage": "Ваш запрос невалиден",
-      "errorCode": "INVALID_DATA",
-      "errorDetails": {
-        "revenueTypeCode": "expected revenueTypeCode to be within List(1, 2, 3), but was '0'"
-      }
-    }
-    ```
-
 
 
 === "401"
@@ -170,15 +155,6 @@ Responses
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 
-    Примеры ответа ошибкии 422:
-
-    ```
-    {
-      "errorId": "bcde3412",
-      "errorMessage": "На балансе недостаточно средств",
-      "errorCode": "INSUFFICIENT_FUNDS"
-    }
-    ```
 
 === "429"
 

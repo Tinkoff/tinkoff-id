@@ -1,14 +1,14 @@
-#Получить СНИЛС
+# Получить признак иностранного агента
 
-Необходимо согласие пользователя на получение информации о СНИЛС. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/snils/get```
+Необходимо согласие пользователя на получение информации о признаке иностранного агента. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/foreignagent/status/get```
 
 AUTHORIZATIONS: httpAuth
 
 Responses
 
-=== "200 СНИЛС"
+=== "200"
 
-    200 СНИЛС
+    200 Признак иностранного агента
 
     RESPONSE HEADERS
 
@@ -20,20 +20,19 @@ Responses
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `snils`       | string ^(\d{11})$ | СНИЛС |
+    | `isForeignAgent`       | boolean | false/true |
 
     Пример запроса
 
-    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/snils```
+    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/foreignagent/status```
 
-    Пример ответа
+    Пример упешного (200) ответа:
 
     ```
     {
-      "snils": "12345678901"
+      "isForeignAgent": false
     }
     ```
- 
 
 === "400"
 
@@ -51,7 +50,6 @@ Responses
     | `errorMessage` (required)       | string | Текст ошибки |
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
-
 
 
 

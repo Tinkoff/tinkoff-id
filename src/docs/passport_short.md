@@ -1,14 +1,14 @@
-#Получить СНИЛС
+# Получить паспортные данные согласно 115 ФЗ
 
-Необходимо согласие пользователя на получение информации о СНИЛС. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/snils/get```
+Необходимо согласие пользователя на получение информации о паспортных данных. В поле scope у токена должен присутствовать доступ вида ```opensme/individual/passport-short/get```
 
 AUTHORIZATIONS: httpAuth
 
 Responses
 
-=== "200 СНИЛС"
+=== "200 Паспорт гражданина РФ"
 
-    200 СНИЛС
+    200 Паспорт гражданина
 
     RESPONSE HEADERS
 
@@ -20,20 +20,30 @@ Responses
 
     | Parameters      | Type     | Description                          |
     | ----------- | --------------- | --------------------- |
-    | `snils`       | string ^(\d{11})$ | СНИЛС |
+    | `birthDate`       | string <date> | Дата рождения |
+    | `citizenship`    | string | Гражданство|
+    | `issueDate`    | string <date> | Дата выдачи|
+    | `serialNumber`    | string | Серия и номер|
+    | `unitCode`    | string | Код подразделения|
+    | `unitName`    | string | Название подразделения|
+
 
     Пример запроса
 
-    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/snils```
+    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport```
 
-    Пример ответа
+    Пример упешного (200) ответа:
 
     ```
     {
-      "snils": "12345678901"
+      "birthDate": "2020-09-01",
+      "citizenship": "РФ",
+      "issueDate": "2020-09-01",
+      "serialNumber": "1234567890",
+      "unitCode": "123-456",
+      "unitName": "УМВД РОССИИ ПО Г. МОСКВЕ",
     }
     ```
- 
 
 === "400"
 
@@ -52,6 +62,29 @@ Responses
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 
+    Примеры ответа ошибкии 400:
+
+    Ошибка при неправильно заполненном ИНН
+    ```
+    {
+      "errorId": "retw6789",
+      "errorMessage": "Некорректно заполнен ИНН",
+      "errorCode": "VALIDATION_ERROR"
+    }
+    ```
+
+    Ошибка при неправильно переданном значении поля revenueTypeCode
+
+    ```
+    {
+      "errorId": "cde4zxc5",
+      "errorMessage": "Ваш запрос невалиден",
+      "errorCode": "INVALID_DATA",
+      "errorDetails": {
+        "revenueTypeCode": "expected revenueTypeCode to be within List(1, 2, 3), but was '0'"
+      }
+    }
+    ```
 
 
 
@@ -125,6 +158,15 @@ Responses
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 
+    Примеры ответа ошибкии 422:
+
+    ```
+    {
+      "errorId": "bcde3412",
+      "errorMessage": "На балансе недостаточно средств",
+      "errorCode": "INSUFFICIENT_FUNDS"
+    }
+    ```
 
 === "429"
 

@@ -90,29 +90,6 @@ Responses
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 
-    Примеры ответа ошибкии 400:
-
-    Ошибка при неправильно заполненном ИНН
-    ```
-    {
-      "errorId": "retw6789",
-      "errorMessage": "Некорректно заполнен ИНН",
-      "errorCode": "VALIDATION_ERROR"
-    }
-    ```
-
-    Ошибка при неправильно переданном значении поля revenueTypeCode
-
-    ```
-    {
-      "errorId": "cde4zxc5",
-      "errorMessage": "Ваш запрос невалиден",
-      "errorCode": "INVALID_DATA",
-      "errorDetails": {
-        "revenueTypeCode": "expected revenueTypeCode to be within List(1, 2, 3), but was '0'"
-      }
-    }
-    ```
 
 
 
@@ -186,15 +163,6 @@ Responses
     | `errorCode` (required)       | string | Код ошибки |
     | `errorDetails ` (required)       | object | Дополнительные данные об ошибке |
 
-    Примеры ответа ошибкии 422:
-
-    ```
-    {
-      "errorId": "bcde3412",
-      "errorMessage": "На балансе недостаточно средств",
-      "errorCode": "INSUFFICIENT_FUNDS"
-    }
-    ```
 
 === "429"
 
