@@ -1157,22 +1157,18 @@
 <ol>
 <li>Партнер инициализирует запуск WebView с кнопкой "Войти в Тинькофф ID"</li>
 <li>Пользователь инициирует процесс авторизации, нажимая кнопку "Войти с Тинькофф" на сайте или в приложении партнера.</li>
-<li>Партнерский сервис должен сгенерировать параметр <code>code_verifier</code> и <code>code_challenge_method</code>, создает его преобразованную версию <code>code_challenge</code>, которая получается с помощью применения преобразования <code>code_challenge = code_challenge_method(code_verifier)</code>, где <code>code_challenge_method</code> является трансформирующей функцией.</li>
-<li>Почитать про хеширование параметра <code>code_verifier</code> можно <a href="https://datatracker.ietf.org/doc/html/rfc7636#section-4.1">здесь</a>.</li>
-<li>Необходимо использовать защиту Proof Key for Code Exchange (<a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE</a>) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.</li>
-<li>Пример генератора: https://tonyxu-io.github.io/pkce-generator/</li>
-<li>Требуемая генерация: "base64_url(SHA256(code_verifier))"</li>
-<li>
-<p>Инициализация авторизации осуществляется вызовом метода GET <code>https://id.tinkoff.ru/auth/authorize</code> со следующими параметрами:</p>
-</li>
-<li>
-<p><code>client_id</code>: идентификатор, который вы получили после регистрации</p>
-</li>
-<li><code>mobile_redirect_url</code> (app link в приложение, указанные в анкете) </li>
-<li><code>code_verifier</code> из пункта 3 </li>
-<li><code>response_type: code</code></li>
-<li><code>response_mode=query</code></li>
+<li>Партнерский сервис должен сгенерировать параметр <code>code_verifier</code> и <code>code_challenge_method</code>, создает его преобразованную версию <code>code_challenge</code>, которая получается с помощью применения преобразования <code>code_challenge = code_challenge_method(code_verifier)</code>, где <code>code_challenge_method</code> является трансформирующей функцией.
+  <em>Почитать про хеширование параметра <code>code_verifier</code> можно <a href="https://datatracker.ietf.org/doc/html/rfc7636#section-4.1">здесь</a>.
+  </em>Необходимо использовать защиту Proof Key for Code Exchange (<a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE</a>) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.
+  <em>Пример генератора: https://tonyxu-io.github.io/pkce-generator/
+  </em>Требуемая генерация: "base64_url(SHA256(code_verifier))"</li>
+<li>Инициализация авторизации осуществляется вызовом метода GET <code>https://id.tinkoff.ru/auth/authorize</code> со следующими параметрами:</li>
 </ol>
+<p><em><code>client_id</code>: идентификатор, который вы получили после регистрации
+  </em><code>mobile_redirect_url</code> (app link в приложение, указанные в анкете) 
+  <em><code>code_verifier</code> из пункта 3 
+  </em><code>response_type: code</code>
+  *<code>response_mode=query</code></p>
 <p>Пример запроса:</p>
 <div class="highlight"><pre><span></span><code>GET https://id.tinkoff.ru/auth/authorize?client_id=%client_id%<span class="err">&amp;</span>redirect_uri=https://myintegration.ru/auth/complete<span class="err">&amp;</span>code_challenge={codeChallenge}<span class="err">&amp;</span>code_challenge_method=S256<span class="err">&amp;</span>response_type=code
 </code></pre></div>
@@ -1187,19 +1183,15 @@
 <ol>
 <li>По app link происходит переход в партнерское приложение с параметром <code>code</code></li>
 <li>Партнерское приложение должно провалидировать параметр <code>code_verifier</code>  для сверки со значением в первоначальном запросе, если валидация прошла успешно, необходимо забрать значение параметра <code>code</code> для дальнейшего обмена на токены.</li>
-<li>
-<p>Для получения Access и Refresh токенов необходимо вызвать метод POST <code>https://id.tinkoff.ru/auth/token</code>. 
-Формат запроса:</p>
-</li>
-<li>
-<p>Authorization: Basic, где username  соответствуют client_id  полученному на электронную почту. <a href="https://gist.github.com/brandonmwest/a2632d0a65088a20c00a">Примеры составления в разных языках</a></p>
-</li>
-<li>Content-type: <code>application/x-www-form-urlencoded</code></li>
-<li>grant_type: <code>authorization_code</code></li>
-<li>redirect_uri: <code>mobile_redirect_url</code> (тот, который был направлен в <code>authorize</code> )</li>
-<li><code>code_verifier</code></li>
-<li>Авторизационный сервер проверяет <code>code_verifier</code> на соответствие <code>code_challenge</code> и возвращает токены или отвечает ошибкой.</li>
+<li>Для получения Access и Refresh токенов необходимо вызвать метод POST <code>https://id.tinkoff.ru/auth/token</code>. 
+Формат запроса:</li>
 </ol>
+<p><em>Authorization: Basic, где username  соответствуют client_id  полученному на электронную почту. <a href="https://gist.github.com/brandonmwest/a2632d0a65088a20c00a">Примеры составления в разных языках</a>
+  </em>Content-type: <code>application/x-www-form-urlencoded</code>
+  <em>grant_type: <code>authorization_code</code>
+  </em>redirect_uri: <code>mobile_redirect_url</code> (тот, который был направлен в <code>authorize</code> )
+  *<code>code_verifier</code>
+12. Авторизационный сервер проверяет <code>code_verifier</code> на соответствие <code>code_challenge</code> и возвращает токены или отвечает ошибкой.</p>
 <p>Пример запроса на получение токена:</p>
 <div class="highlight"><pre><span></span><code>curl -X POST \
      https://id.tinkoff.ru/auth/token \
