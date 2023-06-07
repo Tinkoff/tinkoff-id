@@ -1163,12 +1163,8 @@
 <li>
 <p>Почитать про хеширование параметра <code>code_verifier</code> можно <a href="https://datatracker.ietf.org/doc/html/rfc7636#section-4.1">здесь</a>.</p>
 </li>
-<li>
-<p>Необходимо использовать защиту Proof Key for Code Exchange (<a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE</a>) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.</p>
-</li>
-<li>
-<p>Пример генератора: https://tonyxu-io.github.io/pkce-generator/</p>
-</li>
+<li>Необходимо использовать защиту Proof Key for Code Exchange (<a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE</a>) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.</li>
+<li>Пример генератора: https://tonyxu-io.github.io/pkce-generator/</li>
 <li>Требуемая генерация: "base64_url(SHA256(code_verifier))"</li>
 <li>
 <p>Инициализация авторизации осуществляется вызовом метода GET <code>https://id.tinkoff.ru/auth/authorize</code> со следующими параметрами:</p>

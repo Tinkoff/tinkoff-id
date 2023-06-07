@@ -1196,12 +1196,14 @@
 
 <h1 id="_1">Бизнес описание.</h1>
 <h2 id="_2">Описание продукта</h2>
-<p>Идентификация физ лица от Tinkoff ID - это установление достоверных сведений о клиенте банка путем проверки следующей информации в рамках действия 115 ФЗ:
-1. ФИО;
-2. гражданство Российской Федерации;
-3. дата рождения;
-4. реквизиты паспорта;
-5. адрес регистрации.</p>
+<p>Идентификация физ лица от Tinkoff ID - это установление достоверных сведений о клиенте банка путем проверки следующей информации в рамках действия 115 ФЗ:</p>
+<ol>
+<li>ФИО;</li>
+<li>гражданство Российской Федерации;</li>
+<li>дата рождения;</li>
+<li>реквизиты паспорта;</li>
+<li>адрес регистрации.</li>
+</ol>
 <h2 id="_3">Сценарий использования.</h2>
 <p>На рынке электронных услуг и в операционном процессе организаций субъектов 115 ФЗ рекомендуется проведение идентификации пользователя, который обращается к партнёру за услугой. Банк помогает выполнить данную проверку.</p>
 <p>Основной сценарий для прохождения полной идентификации с Tinkoff:</p>
@@ -1210,7 +1212,7 @@
 <li>Расширенные лимиты на ставки в букмекерских конторах.</li>
 </ul>
 <h2 id="115-">Список субъектов 115-ФЗ.</h2>
-<p>Организации и предприниматели, деятельность которых подпадает под «антиотмывочный» закон, перечислены в статьях <a href="https://normativ.kontur.ru/document/last?moduleId=1&amp;documentId=439460&amp;rangeId=6282007&amp;p=1210&amp;utm_source=google&amp;utm_medium=organic&amp;utm_referer=www.google.com&amp;utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&amp;utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz">5</a> и <a href="https://normativ.kontur.ru/document/last?moduleId=1&amp;documentId=439460&amp;rangeId=6282009&amp;p=1210&amp;utm_source=google&amp;utm_medium=organic&amp;utm_referer=www.google.com&amp;utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&amp;utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz">7.1</a> 115-ФЗ. 
+<p>Организации и предприниматели, деятельность которых подпадает под «антиотмывочный» закон, перечислены в статьях <a href="https://normativ.kontur.ru/document/last?moduleId=1&amp;documentId=439460&amp;rangeId=6282007&amp;p=1210&amp;utm_source=google&amp;utm_medium=organic&amp;utm_referer=www.google.com&amp;utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&amp;utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz">5</a> и <a href="https://normativ.kontur.ru/document/last?moduleId=1&amp;documentId=439460&amp;rangeId=6282009&amp;p=1210&amp;utm_source=google&amp;utm_medium=organic&amp;utm_referer=www.google.com&amp;utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&amp;utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz">7.1</a> 115-ФЗ.
 Полный список отраслей соблюдающих 115-ФЗ:</p>
 <ul>
 <li>банки;</li>
@@ -1238,22 +1240,97 @@
 <li>адвокаты.</li>
 </ul>
 <h2 id="_4">Схема работы с методами в рамках делегированной идентификации.</h2>
-<p>В таблице представлена схема работы с методами которая, которая позволит корректно обрабатывать пользователей и отображать причину отказа в авторизации для пользователей.
-| Приоритет проверки/запуска метода | Выполняемая проверка | Ответ при котором пользователю должно быть отказано в авторизации | Причина для пользователя |
-|:---:|:---:|:---:|:---:|
-| 0 | Пускаем только если выполняются все условия: | Редирект пользователя с "access_denied" | "Идентификация заблокирована антифродом Тинькофф банка." \
-| Проверяется Tinkoff ID при авторизации пользователя | 1. тип учётки: физик, юрик, физюрик; |  |  \
-|  | 2. есть тяжелые продукты; |  |  \
-|  | 3. не антиВИП; |  |  \
-|  | 4. не забанен нами; |  |  \
-|  | 5. пересечение по куки. |  |  |
-| 1 | Получить признак идентификации | Ответ метода: "isIdentified": false | "Вы не прошли идентификацию по одной из причин: \
-|  |  |  | 1. у Вас не было встречи с представителем Тинькофф банка; \
-|  |  |  | 2. у Вас не заключен договор комплексного банковского обслуживания с Тинькофф банком. |
-| 2 | Получить признак ЧС | Ответ метода: "true" | "Отказано в авторизации" |
-| 3 | Получить паспортные данные | Ответ метода: "Паспортные данные не валидны" | "У вас недействительный паспорт" |
-| 4 | Получить паспортные данные | На основании ответа метода по данным в параметре "birthDate" - Пользователь младше 18 | Вы несовершеннолетний клиент и не можете быть допущены к заключению пари |
-| 4 | Получить паспортные данные | На основании ответа метода по данным в параметре "citizenship" значение != "РФ" - пользователь не гражданин РФ | "Вы являетесь нерезидентом России" |</p>
+<p>В таблице представлена схема работы с методами которая, которая позволит корректно обрабатывать пользователей и отображать причину отказа в авторизации для пользователей.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Приоритет проверки метода</th>
+<th align="center">Выполняемая проверка</th>
+<th align="center">Ответ при котором пользователю должно быть отказано в авторизации</th>
+<th align="center">Причина для пользователя</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">Пускаем только если выполняются все условия:</td>
+<td align="center">Редирект пользователя с "access_denied"</td>
+<td align="center">"Идентификация заблокирована антифродом Тинькофф банка." \</td>
+</tr>
+<tr>
+<td align="center">Проверяется Tinkoff ID при авторизации пользователя</td>
+<td align="center">1. тип учётки: физик, юрик, физюрик;</td>
+<td align="center"></td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">2. есть тяжелые продукты;</td>
+<td align="center"></td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">3. не антиВИП;</td>
+<td align="center"></td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">4. не забанен нами;</td>
+<td align="center"></td>
+<td align="center">\</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">5. пересечение по куки.</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">Получить признак идентификации</td>
+<td align="center">Ответ метода: "isIdentified": false</td>
+<td align="center">"Вы не прошли идентификацию по одной из причин: \</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">1. у Вас не было встречи с представителем Тинькофф банка; \</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">2. у Вас не заключен договор комплексного банковского обслуживания с Тинькофф банком.</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">Получить признак ЧС</td>
+<td align="center">Ответ метода: "true"</td>
+<td align="center">"Отказано в авторизации"</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">Получить паспортные данные</td>
+<td align="center">Ответ метода: "Паспортные данные не валидны"</td>
+<td align="center">"У вас недействительный паспорт"</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">Получить паспортные данные</td>
+<td align="center">На основании ответа метода по данным в параметре "birthDate" - Пользователь младше 18</td>
+<td align="center">Вы несовершеннолетний клиент и не можете быть допущены к заключению пари</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">Получить паспортные данные</td>
+<td align="center">На основании ответа метода по данным в параметре "citizenship" значение != "РФ" - пользователь не гражданин РФ</td>
+<td align="center">"Вы являетесь нерезидентом России"</td>
+</tr>
+</tbody>
+</table>
 
 
 
