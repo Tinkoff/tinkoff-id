@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: TID
+Plugin Name: TinkoffID
 Plugin URI: https://www.tinkoff.ru/tinkoff-id/
 Description: Плагин авторизации через Тинькофф ID
 Version: 0.4
