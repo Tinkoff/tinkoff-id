@@ -3,6 +3,7 @@
 ## Описание продукта
 
 Идентификация физ лица от Tinkoff ID - это установление достоверных сведений о клиенте банка путем проверки следующей информации в рамках действия 115 ФЗ:
+
 1. ФИО;
 2. гражданство Российской Федерации;
 3. дата рождения;
@@ -18,7 +19,7 @@
 - Расширенные лимиты на ставки в букмекерских конторах.
 
 ## Список субъектов 115-ФЗ.
-Организации и предприниматели, деятельность которых подпадает под «антиотмывочный» закон, перечислены в статьях [5](https://normativ.kontur.ru/document/last?moduleId=1&documentId=439460&rangeId=6282007&p=1210&utm_source=google&utm_medium=organic&utm_referer=www.google.com&utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz) и [7.1](https://normativ.kontur.ru/document/last?moduleId=1&documentId=439460&rangeId=6282009&p=1210&utm_source=google&utm_medium=organic&utm_referer=www.google.com&utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz) 115-ФЗ. 
+Организации и предприниматели, деятельность которых подпадает под «антиотмывочный» закон, перечислены в статьях [5](https://normativ.kontur.ru/document/last?moduleId=1&documentId=439460&rangeId=6282007&p=1210&utm_source=google&utm_medium=organic&utm_referer=www.google.com&utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz) и [7.1](https://normativ.kontur.ru/document/last?moduleId=1&documentId=439460&rangeId=6282009&p=1210&utm_source=google&utm_medium=organic&utm_referer=www.google.com&utm_startpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz&utm_orderpage=kontur.ru%2Fprizma%2Fspravka%2F37845-kakie_organizacii_otnosyatsya_k_subektam_115fz) 115-ФЗ.
 Полный список отраслей соблюдающих 115-ФЗ:
 
 - банки;
@@ -48,6 +49,7 @@
 ## Схема работы с методами в рамках делегированной идентификации. 
 
 В таблице представлена схема работы с методами которая, которая позволит корректно обрабатывать пользователей и отображать причину отказа в авторизации для пользователей.
+
 | Приоритет проверки/запуска метода | Выполняемая проверка | Ответ при котором пользователю должно быть отказано в авторизации | Причина для пользователя |
 |:---:|:---:|:---:|:---:|
 | 0 | Пускаем только если выполняются все условия: | Редирект пользователя с "access_denied" | "Идентификация заблокирована антифродом Тинькофф банка." \
