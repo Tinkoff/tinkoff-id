@@ -1157,12 +1157,8 @@
 <ol>
 <li>Партнер инициализирует запуск WebView с кнопкой "Войти в Тинькофф ID"</li>
 <li>Пользователь инициирует процесс авторизации, нажимая кнопку "Войти с Тинькофф" на сайте или в приложении партнера.</li>
-<li>
-<p>Партнерский сервис должен сгенерировать параметр <code>code_verifier</code> и <code>code_challenge_method</code>, создает его преобразованную версию <code>code_challenge</code>, которая получается с помощью применения преобразования <code>code_challenge = code_challenge_method(code_verifier)</code>, где <code>code_challenge_method</code> является трансформирующей функцией.</p>
-</li>
-<li>
-<p>Почитать про хеширование параметра <code>code_verifier</code> можно <a href="https://datatracker.ietf.org/doc/html/rfc7636#section-4.1">здесь</a>.</p>
-</li>
+<li>Партнерский сервис должен сгенерировать параметр <code>code_verifier</code> и <code>code_challenge_method</code>, создает его преобразованную версию <code>code_challenge</code>, которая получается с помощью применения преобразования <code>code_challenge = code_challenge_method(code_verifier)</code>, где <code>code_challenge_method</code> является трансформирующей функцией.</li>
+<li>Почитать про хеширование параметра <code>code_verifier</code> можно <a href="https://datatracker.ietf.org/doc/html/rfc7636#section-4.1">здесь</a>.</li>
 <li>Необходимо использовать защиту Proof Key for Code Exchange (<a href="https://datatracker.ietf.org/doc/html/rfc7636">PKCE</a>) для предотвращения последствий возможного перехвата кода, данное значение должно быть уникальным для каждого запроса кода авторизации.</li>
 <li>Пример генератора: https://tonyxu-io.github.io/pkce-generator/</li>
 <li>Требуемая генерация: "base64_url(SHA256(code_verifier))"</li>
