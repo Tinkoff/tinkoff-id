@@ -1175,21 +1175,23 @@
 <li><code>response_type: code</code></li>
 <li><code>response_mode=query</code></li>
 </ul>
-</li>
-</ol>
 <p>Пример запроса:</p>
 <div class="highlight"><pre><span></span><code>GET https://id.tinkoff.ru/auth/authorize?client_id=%client_id%<span class="err">&amp;</span>redirect_uri=https://myintegration.ru/auth/complete<span class="err">&amp;</span>code_challenge={codeChallenge}<span class="err">&amp;</span>code_challenge_method=S256<span class="err">&amp;</span>response_type=code
 </code></pre></div>
-<ol>
-<li>Отображение экрана аутентификации в Тинькофф  id.tinkoff.ru для ввода номера телефона.</li>
+</li>
+<li>
+<p>Отображение экрана аутентификации в Тинькофф  id.tinkoff.ru для ввода номера телефона.</p>
+</li>
 <li>Пользователь вводит данные для прохождения аутентификации.</li>
 <li>Пользователь нажимает на кнопку "Продолжить", соглашаясь с передачей данных. В зависимости от настроек партнерского приложения, у пользователя есть возможность снятия чекбокса с данными, которые он не готов предоставить. Если у пользователя напротив всех полей есть включенный чекбокс, то при нажатии "Продолжить", в следующих авторизациях это окно открываться не будет.</li>
-<li>На <code>https://myintegration.ru/auth/complete</code> придет запрос вида:</li>
-</ol>
+<li>
+<p>На <code>https://myintegration.ru/auth/complete</code> придет запрос вида:</p>
 <div class="highlight"><pre><span></span><code>https://myintegration.ru/auth/complete?code_challenge={codeChallenge}<span class="err">&amp;</span>code_challenge_method=S256<span class="err">&amp;</span>code=c.1aGiAXX3Ni<span class="err">&amp;</span>session_state=hXXXXXXY3kgs3nx0H3RTj3JzCSrdaqaDhU6lS8XXXXX.i4kl6dsEB1SQogzq00
 </code></pre></div>
-<ol>
-<li>По app link происходит переход в партнерское приложение с параметром <code>code</code></li>
+</li>
+<li>
+<p>По app link происходит переход в партнерское приложение с параметром <code>code</code></p>
+</li>
 <li>Партнерское приложение должно провалидировать параметр <code>code_verifier</code>  для сверки со значением в первоначальном запросе, если валидация прошла успешно, необходимо забрать значение параметра <code>code</code> для дальнейшего обмена на токены.</li>
 <li>
 <p>Для получения Access и Refresh токенов необходимо вызвать метод POST <code>https://id.tinkoff.ru/auth/token</code>.
