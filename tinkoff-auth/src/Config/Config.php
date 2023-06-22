@@ -37,7 +37,7 @@ abstract class Config
      */
     public function push($index, $value)
     {
-        if ( ! in_array($index, $this->availableIndexes)) {
+        if (!in_array($index, $this->availableIndexes)) {
             return false;
         }
         $this->store[$index] = $value;

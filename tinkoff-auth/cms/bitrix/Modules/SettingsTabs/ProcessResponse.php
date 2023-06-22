@@ -18,6 +18,7 @@ class ProcessResponse
                 // Сохранение значений полей
                 foreach ($fields as $fieldID) {
                     $value = isset($_REQUEST[$fieldID]) && $_REQUEST[$fieldID] ? $_REQUEST[$fieldID] : '';
+                    $value = is_array($value) ? json_encode($value) : $value;
                     \COption::SetOptionString($moduleID, $fieldID, $value);
                 }
             }

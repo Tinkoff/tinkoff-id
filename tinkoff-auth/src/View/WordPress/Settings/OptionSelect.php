@@ -6,17 +6,19 @@ use TinkoffAuth\View\Common\OptionSelect as OptionSelectAbstract;
 
 class OptionSelect extends WordPressSettingsComponent
 {
-    const SELECT_HOOK_VALUES          = [
+    const SELECT_HOOK_VALUES = [
         'Самостоятельно расположить' => '',
         'Внутри формы регистрации'   => 'woocommerce_login_form',
         'Ниже формы регистрации'     => 'woocommerce_login_form_end',
-        'Выше формы регистрации'     => 'woocommerce_login_form_start'
+        'Выше формы регистрации'     => 'woocommerce_login_form_start',
+        'До формы регистрации'       => 'woocommerce_before_customer_login_form'
     ];
     const SELECT_HOOK_CHECKOUT_VALUES = [
         'Самостоятельно расположить' => '',
         'Выше деталей заказа'        => 'woocommerce_checkout_billing',
         'Внутри деталей заказа'      => 'woocommerce_checkout_shipping',
         'После деталей заказа'       => 'woocommerce_checkout_after_customer_details',
+        'До деталей заказа'          => 'woocommerce_before_checkout_form',
     ];
 
     private $values;
@@ -32,7 +34,7 @@ class OptionSelect extends WordPressSettingsComponent
      */
     public function render()
     {
-        if ( ! function_exists('get_option')) {
+        if (!function_exists('get_option')) {
             return '';
         }
         $option = get_option($this->optionName);

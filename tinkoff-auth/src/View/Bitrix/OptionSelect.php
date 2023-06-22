@@ -2,10 +2,27 @@
 
 namespace TinkoffAuth\View\Bitrix;
 
+use TinkoffAuth\View\AuthButton\AuthButton;
 use TinkoffAuth\View\Common\OptionSelect as OptionSelectAbstract;
+use CGroup;
 
 class OptionSelect extends BitrixComponent
 {
+    public static function groups()
+    {
+        $groupsResult = [];
+        $groups       = CGroup::GetList();
+        while ($group = $groups->Fetch()) {
+            $id = $group['ID'];
+            if ($id === "1" || $id === "2") {
+                continue;
+            }
+
+            $groupsResult[$group['ID']] = $group['NAME'];
+        }
+        return $groupsResult;
+    }
+
     /**
      * @return array
      */

@@ -78,7 +78,7 @@ class Response
      */
     private function parseHeaders($headers)
     {
-        if ( ! is_string($headers)) {
+        if (!is_string($headers)) {
             return [];
         }
 
@@ -108,7 +108,7 @@ class Response
     private function jsonDecodeBody($body)
     {
         $canBeDecoded = json_decode($body);
-        if ( ! $canBeDecoded) {
+        if (!$canBeDecoded) {
             return [];
         }
 

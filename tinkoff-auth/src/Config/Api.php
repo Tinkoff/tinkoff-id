@@ -21,6 +21,9 @@ class Api extends Config
     const SCOPES_PUBLIC_OFFICIAL_PERSON = 'scopes_public_official_person';
     const SCOPES_FOREIGN_AGENT = 'scopes_is_foreign_agent';
     const SCOPES_BLACKLIST_STATUS = 'scopes_blacklist_status';
+    const SCOPES_BANK_ACCOUNTS = 'scopes_bank_accounts';
+    const SCOPES_COMPANY_INFO = 'scopes_company_info';
+    const SCOPES_BANK_STATEMENTS = 'scopes_bank_statements';
 
     protected $availableIndexes = [
         self::USER_SCOPES,
@@ -40,6 +43,10 @@ class Api extends Config
         self::SCOPES_PUBLIC_OFFICIAL_PERSON,
         self::SCOPES_FOREIGN_AGENT,
         self::SCOPES_BLACKLIST_STATUS,
+
+        self::SCOPES_BANK_ACCOUNTS,
+        self::SCOPES_COMPANY_INFO,
+        self::SCOPES_BANK_STATEMENTS,
     ];
 
     /**
@@ -68,9 +75,7 @@ class Api extends Config
     {
         return [
             self::SCOPES_USERINFO               => [
-                'profile',
                 'phone',
-                'email',
             ],
             self::SCOPES_PASSPORT_SHORT         => [
                 'opensme/individual/passport-short/get'
@@ -114,6 +119,16 @@ class Api extends Config
             self::SCOPES_BLACKLIST_STATUS       => [
                 'opensme/individual/blacklist/status/get'
             ],
+
+            self::SCOPES_BANK_ACCOUNTS   => [
+                'opensme/inn/[{inn}]/kpp/[{kpp}]/bank-accounts/get'
+            ],
+            self::SCOPES_COMPANY_INFO    => [
+                'opensme/inn/[{inn}]/kpp/[{kpp}]/company-info/get'
+            ],
+            self::SCOPES_BANK_STATEMENTS => [
+                'opensme/inn/[{inn}]/kpp/[{kpp}]/bank-statements/get'
+            ],
         ];
     }
 
@@ -135,6 +150,9 @@ class Api extends Config
             self::SCOPES_PUBLIC_OFFICIAL_PERSON => 'https://business.tinkoff.ru/openapi/api/v1/individual/pdl/status',
             self::SCOPES_FOREIGN_AGENT          => 'https://business.tinkoff.ru/openapi/api/v1/individual/foreignagent/status',
             self::SCOPES_BLACKLIST_STATUS       => 'https://business.tinkoff.ru/openapi/api/v1/individual/blacklist/status',
+            self::SCOPES_BANK_ACCOUNTS          => 'https://business.tinkoff.ru/openapi/api/v4/bank-accounts',
+            self::SCOPES_COMPANY_INFO           => 'https://business.tinkoff.ru/openapi/api/v1/company',
+            self::SCOPES_BANK_STATEMENTS        => 'https://business.tinkoff.ru/openapi/api/v1/statement',
         ];
     }
 }
