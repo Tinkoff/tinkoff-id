@@ -21,7 +21,7 @@ class tinkoffid extends CModule
         $this->MODULE_VERSION      = $arModuleVersion["VERSION"];
         $this->MODULE_VERSION_DATE = $arModuleVersion["VERSION_DATE"];
 
-        $this->MODULE_NAME        = 'Tinkoff ID';
+        $this->MODULE_NAME        = 'TID';
         $this->MODULE_DESCRIPTION = 'Авторизация через Тинькофф ID';
 
         $this->PARTNER_NAME = "Тинькофф";

@@ -19,6 +19,7 @@ if ($right == "D") {
 ProcessResponse::process($moduleID, [
     TINKOFF_AUTH_FIELD_CLIENT_ID,
     TINKOFF_AUTH_FIELD_CLIENT_SECRET,
+    TINKOFF_AUTH_FIELD_BLOCKED_GROUPS,
     TINKOFF_AUTH_FIELD_BUTTON_SIZE,
     TINKOFF_AUTH_FIELD_BUTTON_COLOR,
     TINKOFF_AUTH_FIELD_BUTTON_LANG,
@@ -46,6 +47,14 @@ $fieldClientSecret->setLabel('Client Secret');
 $fieldClientSecret->setType(FieldBuilder::TYPE_TEXT);
 $fieldClientSecret->setPlaceholder('Введите Client Secret интеграции');
 $tabMain->addField($fieldClientSecret);
+
+$fieldBlockedGroups = new FieldBuilder($moduleID);
+$fieldBlockedGroups->setId(TINKOFF_AUTH_FIELD_BLOCKED_GROUPS);
+$fieldBlockedGroups->setLabel('Запретить авторизацию');
+$fieldBlockedGroups->setType(FieldBuilder::TYPE_SELECT);
+$fieldBlockedGroups->setOptions(OptionSelect::groups());
+$fieldBlockedGroups->setMultiple(true);
+$tabMain->addField($fieldBlockedGroups);
 
 $tabVisual = new TabBuilder($moduleID);
 $tabVisual->setId('visual');

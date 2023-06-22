@@ -20,7 +20,7 @@ class State
     {
         $stateConfig = StateConfig::getInstance();
 
-        if ( ! is_null($provider) && is_subclass_of($provider, Provider::class)) {
+        if (!is_null($provider) && is_subclass_of($provider, Provider::class)) {
             $this->provider = new $provider();
         } else {
             $provider       = $stateConfig->get(StateConfig::PROVIDER)

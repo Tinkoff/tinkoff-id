@@ -34,6 +34,7 @@ function tinkoff_auth_auth_callback( WP_REST_Request $request ) {
 	$mediator = $tinkoff->auth();
 	if ( ! $mediator->getStatus() ) {
 		return tinkoff_auth_helper_build_response( false, 'Ошибка авторизации' );
+//		return tinkoff_auth_helper_build_response( false, $mediator->getMessage() );
 	}
 
 	$credentials = $mediator->getPayload();
@@ -65,16 +66,20 @@ function tinkoff_auth_auth_callback( WP_REST_Request $request ) {
 	$subscription = $credentials[ Api::SCOPES_SUBSCRIPTION ];
 	$cobrand      = $credentials[ Api::SCOPES_COBRAND_STATUS ];
 
-    // Публичное должностное лицо, ин агент и есть ли в черных списках
-    $official_person  = $credentials[ Api::SCOPES_PUBLIC_OFFICIAL_PERSON ];
-    $foreign_agent    = $credentials[ Api::SCOPES_FOREIGN_AGENT ];
-    $blacklist_status = $credentials[ Api::SCOPES_BLACKLIST_STATUS ];
+	// Публичное должностное лицо, ин агент и есть ли в черных списках
+	$official_person  = $credentials[ Api::SCOPES_PUBLIC_OFFICIAL_PERSON ];
+	$foreign_agent    = $credentials[ Api::SCOPES_FOREIGN_AGENT ];
+	$blacklist_status = $credentials[ Api::SCOPES_BLACKLIST_STATUS ];
 
 	// Формирование почты, имени пользователя и пароля
 	$email    = isset( $userinfo['email'] ) && $userinfo['email'] ? $userinfo['email'] : null;
-	$username = str_replace( [ '+', ' ', '-' ], '', $userinfo['phone_number'] );
+	$phone    = $userinfo['phone_number'];
+	$username = str_replace( [ '+', ' ', '-' ], '', $phone );
 	$username = $username ?: null;
 	$password = md5( time() . rand( 0, 100 ) . rand( 0, 200 ) );
+
+	$domain = $_SERVER['HTTP_HOST'];
+	$email  = $email ?: $username . '@' . $domain;
 
 	if ( ! $email || ! $username ) {
 		return tinkoff_auth_helper_build_response( false, 'Предоставленных данных недостаточно' );
@@ -108,74 +113,77 @@ function tinkoff_auth_auth_callback( WP_REST_Request $request ) {
 		}
 	}
 
+	if ( user_can( $user_id, 'manage_options' )
+	     || user_can( $user_id, 'shop_manager' )
+	     || user_can( $user_id, 'administrator' ) ) {
+		return tinkoff_auth_helper_build_response( false );
+	}
+
+	if ( tid_user_fields_getter( $userinfo, 'given_name' ) ) {
+		$user_id = wp_update_user( [
+			'ID'       => $user_id,
+			'user_url' => tid_user_fields_getter( $userinfo, 'given_name' )
+		] );
+	}
+
+	if ( tid_user_fields_getter( $userinfo, 'given_name' ) ) {
+		$user_id = wp_update_user( [
+			'ID'         => $user_id,
+			'first_name' => tid_user_fields_getter( $userinfo, 'given_name' ),
+			'last_name'  => tid_user_fields_getter( $userinfo, 'family_name' )
+		] );
+	}
+
 	// Профиль WP
-	tinkoff_auth_helper_add_user_meta( $user_id, 'is_tinkoff', true );
-	tinkoff_auth_helper_add_user_meta(
-		$user_id,
-		'first_name',
-		tinkoff_auth_helper_get_user_info_safely( $userinfo, 'given_name' )
-	);
-	tinkoff_auth_helper_add_user_meta(
-		$user_id,
-		'last_name',
-		tinkoff_auth_helper_get_user_info_safely( $userinfo, 'family_name' )
-	);
+	tid_add_user_meta( $user_id, 'is_tinkoff', true );
+	tid_add_user_meta( $user_id, 'first_name', tid_user_fields_getter( $userinfo, 'given_name' ) );
+	tid_add_user_meta( $user_id, 'shipping_first_name', tid_user_fields_getter( $userinfo, 'given_name' ) );
+	tid_add_user_meta( $user_id, 'last_name', tid_user_fields_getter( $userinfo, 'family_name' ) );
+	tid_add_user_meta( $user_id, 'shipping_last_name', tid_user_fields_getter( $userinfo, 'family_name' ) );
 
 	// Плагин iiko
 	if ( get_option( 'tinkoff_auth_compatibility_iiko' ) ) {
-		tinkoff_auth_helper_add_user_meta(
-			$user_id,
-			'iiko_email',
-			tinkoff_auth_helper_get_user_info_safely( $userinfo, 'email' )
-		);
-		tinkoff_auth_helper_add_user_meta(
-			$user_id,
-			'iiko_name',
-			tinkoff_auth_helper_get_user_info_safely( $userinfo, 'given_name' )
-		);
-		tinkoff_auth_helper_add_user_meta(
-			$user_id,
-			'iiko_middleName',
-			tinkoff_auth_helper_get_user_info_safely( $userinfo, 'middle_name' )
-		);
-		tinkoff_auth_helper_add_user_meta(
-			$user_id,
-			'iiko_middleName',
-			tinkoff_auth_helper_get_user_info_safely( $userinfo, 'middle_name' )
-		);
-		tinkoff_auth_helper_add_user_meta(
-			$user_id,
-			'iiko_surName',
-			tinkoff_auth_helper_get_user_info_safely( $userinfo, 'family_name' )
-		);
-		tinkoff_auth_helper_add_user_meta( $user_id, 'iiko_phone', $username );
+		tid_add_user_meta( $user_id, 'iiko_email', tid_user_fields_getter( $userinfo, 'email' ) );
+		tid_add_user_meta( $user_id, 'iiko_name', tid_user_fields_getter( $userinfo, 'given_name' ) );
+		tid_add_user_meta( $user_id, 'iiko_middleName', tid_user_fields_getter( $userinfo, 'middle_name' ) );
+		tid_add_user_meta( $user_id, 'iiko_middleName', tid_user_fields_getter( $userinfo, 'middle_name' ) );
+		tid_add_user_meta( $user_id, 'iiko_surName', tid_user_fields_getter( $userinfo, 'family_name' ) );
+		tid_add_user_meta( $user_id, 'iiko_phone', $username );
 	}
 
 	// Билинг
-	tinkoff_auth_helper_add_user_meta(
-		$user_id,
-		'billing_first_name',
-		tinkoff_auth_helper_get_user_info_safely( $userinfo, 'given_name' )
-	);
-	tinkoff_auth_helper_add_user_meta( $user_id, 'billing_phone', $username );
+	tid_add_user_meta( $user_id, 'billing_first_name', tid_user_fields_getter( $userinfo, 'given_name' ) );
+	tid_add_user_meta( $user_id, 'billing_last_name', tid_user_fields_getter( $userinfo, 'family_name' ) );
+	tid_add_user_meta( $user_id, 'billing_phone', $username );
+	tid_add_user_meta( $user_id, 'shipping_phone', $username );
+
 
 	// Дополнительные данные от Тинькофф
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_passport', $passport, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_drive_licenses', $driveLicenses, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_inn', $inn, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_snils', $snils, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_is_identified', $isIdentified, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_is_self_employed', $isSelfEmployed, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_addresses', $addresses, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_debitCards', $debitCards, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_subscription', $subscription, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_cobrand', $cobrand, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_passport', $passport, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_drive_licenses', $driveLicenses, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_inn', $inn, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_snils', $snils, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_is_identified', $isIdentified, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_is_self_employed', $isSelfEmployed, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_addresses', $addresses, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_debitCards', $debitCards, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_subscription', $subscription, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_cobrand', $cobrand, true );
 
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_official_person', $official_person, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_foreign_agent', $foreign_agent, true );
-	tinkoff_auth_helper_add_user_meta( $user_id, 'tinkoff_auth_blacklist_status', $blacklist_status, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_official_person', $official_person, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_foreign_agent', $foreign_agent, true );
+	tid_add_user_meta( $user_id, 'tinkoff_auth_blacklist_status', $blacklist_status, true );
 
-	// Авторизация
+	$customer = new WC_Customer( $user_id );
+	if ( ! is_wp_error( $customer ) ) {
+		$customer->set_billing_email( $email );
+		$customer->set_billing_first_name( tid_user_fields_getter( $userinfo, 'given_name' ) );
+		$customer->set_billing_first_name( tid_user_fields_getter( $userinfo, 'family_name' ) );
+		$customer->set_billing_phone( $username );
+		$customer->set_shipping_first_name( tid_user_fields_getter( $userinfo, 'given_name' ) );
+		$customer->set_shipping_last_name( tid_user_fields_getter( $userinfo, 'family_name' ) );
+	}
+
 	wp_set_auth_cookie( $user_id );
 
 	return tinkoff_auth_helper_build_response( true );
@@ -192,7 +200,9 @@ function tinkoff_auth_auth_callback( WP_REST_Request $request ) {
 function tinkoff_auth_helper_format_redirect_url( $status = true, $message = '' ) {
 	$account_location = get_permalink( get_option( 'woocommerce_myaccount_page_id' ) );
 
-	return $account_location . '?' . http_build_query( [ 'status' => $status, 'message' => $message ] );
+	$url = $account_location . '?' . http_build_query( [ 'status' => $status, 'message' => $message ] );
+
+	return apply_filters( 'tid_wp_redirect_url', $url, $status, $message );
 }
 
 /**
@@ -212,7 +222,7 @@ function tinkoff_auth_helper_build_response( $status = true, $message = '' ) {
 	return $response;
 }
 
-function tinkoff_auth_helper_add_user_meta( $user_id, $field, $value, $forced = false ) {
+function tid_add_user_meta( $user_id, $field, $value, $forced = false ) {
 	if ( ! $forced && ! $value ) {
 		return false;
 	}
@@ -222,6 +232,6 @@ function tinkoff_auth_helper_add_user_meta( $user_id, $field, $value, $forced = 
 	return true;
 }
 
-function tinkoff_auth_helper_get_user_info_safely( $userinfo, $index, $default = '' ) {
-	return isset( $userinfo[ $index ] ) && $userinfo[ $index ] ? $userinfo[ $index ] : $default;
+function tid_user_fields_getter( $array, $index, $default = '' ) {
+	return isset( $array[ $index ] ) && $array[ $index ] ? $array[ $index ] : $default;
 }

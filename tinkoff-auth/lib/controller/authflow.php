@@ -32,13 +32,13 @@ class AuthFlow extends Controller
 
     public function signAction()
     {
-        if ( ! CModule::IncludeModule("tinkoffid")) {
+        if (!CModule::IncludeModule("tinkoffid")) {
             return $this->redirectHome();
         }
         $tinkoff  = new Tinkoff();
         $mediator = $tinkoff->auth();
-        if ( ! $mediator->getStatus()) {
-            return $this->redirectHome();
+        if (!$mediator->getStatus()) {
+            return $this->redirectHome($mediator->getMessage());
         }
 
         $credentials = $mediator->getPayload();
@@ -52,22 +52,36 @@ class AuthFlow extends Controller
         $username = $username ?: null;
         $password = md5(time() . rand(0, 100) . rand(0, 200));
 
+        $domain = $_SERVER['HTTP_HOST'];
+        $email  = $email ?: $username . '@' . $domain;
 
-        if ( ! $email || ! $username) {
+        if (!$email || !$username) {
             return $this->redirectHome();
         }
 
         $userEntity = new CUser;
-        $user       = CUser::GetByLogin($email)->Fetch();
+        $user       = CUser::GetByLogin($username)->Fetch();
         $userID     = isset($user['ID']) && $user['ID'] ? $user['ID'] : null;
 
-        if ( ! $userID) {
+
+        if (!$userID) {
             $userID = $userEntity->Add([
-                'LOGIN'            => $email,
+                'LOGIN'            => $username,
                 'EMAIL'            => $email,
                 'PASSWORD'         => $password,
                 'CONFIRM_PASSWORD' => $password,
             ]);
+        } else {
+            $blockedGroups = \COption::GetOptionString(GetModuleID(__DIR__), TINKOFF_AUTH_FIELD_BLOCKED_GROUPS, '[]');
+            $blockedGroups = json_decode($blockedGroups) ? json_decode($blockedGroups, true) : [];
+            $blockedGroups = array_merge($blockedGroups, ["1"]);
+
+            $userGroups = $userEntity->GetUserGroup($userID);
+            foreach ($userGroups as $group) {
+                if (in_array($group, $blockedGroups)) {
+                    return $this->redirectHome();
+                }
+            }
         }
 
         // Паспорт пользователя
@@ -95,9 +109,9 @@ class AuthFlow extends Controller
         $cobrand      = $credentials[Api::SCOPES_COBRAND_STATUS];
 
         // Публичное должностное лицо, ин агент и есть ли в черных списках
-        $officialPerson  = $credentials[ Api::SCOPES_PUBLIC_OFFICIAL_PERSON ];
-        $foreignAgent    = $credentials[ Api::SCOPES_FOREIGN_AGENT ];
-        $blacklistStatus = $credentials[ Api::SCOPES_BLACKLIST_STATUS ];
+        $officialPerson  = $credentials[Api::SCOPES_PUBLIC_OFFICIAL_PERSON];
+        $foreignAgent    = $credentials[Api::SCOPES_FOREIGN_AGENT];
+        $blacklistStatus = $credentials[Api::SCOPES_BLACKLIST_STATUS];
 
         $userEntity->update($userID, [
             'NAME'                          => $userinfo['given_name'],
@@ -114,18 +128,17 @@ class AuthFlow extends Controller
             'TINKOFF_AUTH_DEBITCARDS'       => $debitCards,
             'TINKOFF_AUTH_SUBSCRIPTION'     => $subscription,
             'TINKOFF_AUTH_COBRAND'          => $cobrand,
-            'TINKOFF_AUTH_OFFICIAL_PERSON'   => $officialPerson,
-            'TINKOFF_AUTH_FOREIGN_AGENT'     => $foreignAgent,
-            'TINKOFF_AUTH_BLACKLIST_STATUS'  => $blacklistStatus,
+            'TINKOFF_AUTH_OFFICIAL_PERSON'  => $officialPerson,
+            'TINKOFF_AUTH_FOREIGN_AGENT'    => $foreignAgent,
+            'TINKOFF_AUTH_BLACKLIST_STATUS' => $blacklistStatus,
         ]);
 
         $userEntity->Authorize($userID);
 
-
         return $this->redirectHome();
     }
 
-    private function redirectHome()
+    private function redirectHome($message = 0)
     {
         if (class_exists(Redirect::class)) {
             return new Redirect('/');

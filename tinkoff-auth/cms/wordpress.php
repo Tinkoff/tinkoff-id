@@ -18,7 +18,9 @@ function tinkoff_auth_show_button_shortcode() {
 
 $button_hook = get_option( 'tinkoff_auth_button_hook' );
 add_action( $button_hook, function () {
-	echo do_shortcode( '[tinkoff-button]' );
+	if (!is_checkout()){
+		echo do_shortcode( '[tinkoff-button]' );
+	}
 } );
 
 
@@ -30,3 +32,7 @@ add_action( $button_hook, function () {
 } );
 
 require_once __DIR__ . '/wordpress/endpoints.php';
+
+// Расширения для WordPress
+require_once __DIR__ . '/wordpress/extensions/autoload.php';
+

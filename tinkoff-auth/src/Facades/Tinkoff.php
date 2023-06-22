@@ -24,7 +24,7 @@ class Tinkoff extends BaseFacade
     public function getAuthURL($redirectURI = null, $scopeParameters = [])
     {
         $authConfig = Auth::getInstance();
-        if ( ! $redirectURI) {
+        if (!$redirectURI) {
             $redirectURI = $authConfig->get(Auth::REDIRECT_URI);
         }
 
@@ -38,7 +38,7 @@ class Tinkoff extends BaseFacade
             'response_type' => 'code'
         ];
 
-        if ( ! empty($scopeParameters)) {
+        if (!empty($scopeParameters)) {
             $query['scope_parameters'] = json_encode($scopeParameters);
         }
 
@@ -60,14 +60,14 @@ class Tinkoff extends BaseFacade
         $authConfig = Auth::getInstance();
 
         $accessToken = $api->getAccessToken();
-        if ( ! $accessToken) {
+        if (!$accessToken) {
             $mediator->setMessage('Ошибка при получении access token');
 
             return $mediator;
         }
         $authConfig->push(Auth::ACCESS_TOKEN, $accessToken);
 
-        if ( ! $api->validateScopes(Api::SCOPES_FOR_AUTH, $accessToken)) {
+        if (!$api->validateScopes(Api::SCOPES_FOR_AUTH, $accessToken)) {
             $mediator->setMessage('Пользователь предоставил недостаточно сведений');
 
             return $mediator;

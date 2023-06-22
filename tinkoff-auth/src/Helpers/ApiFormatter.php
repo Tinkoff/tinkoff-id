@@ -81,6 +81,9 @@ class ApiFormatter
             Api::SCOPES_PUBLIC_OFFICIAL_PERSON => self::getScopeDataSafely($data, Api::SCOPES_PUBLIC_OFFICIAL_PERSON),
             Api::SCOPES_FOREIGN_AGENT          => self::getScopeDataSafely($data, Api::SCOPES_FOREIGN_AGENT),
             Api::SCOPES_BLACKLIST_STATUS       => self::getScopeDataSafely($data, Api::SCOPES_BLACKLIST_STATUS),
+            Api::SCOPES_BANK_ACCOUNTS          => self::getScopeDataSafely($data, Api::SCOPES_BANK_ACCOUNTS),
+            Api::SCOPES_COMPANY_INFO           => self::getScopeDataSafely($data, Api::SCOPES_COMPANY_INFO),
+            Api::SCOPES_BANK_STATEMENTS        => self::getScopeDataSafely($data, Api::SCOPES_BANK_STATEMENTS),
         ];
     }
 
