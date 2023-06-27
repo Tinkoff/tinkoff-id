@@ -10,9 +10,9 @@ class ButtonLoader extends Component
 
     public function render()
     {
-        $html  ="<div class='tid-xhr'></div>";
+        $html = "<div class='tid-xhr'></div>";
 
-        if ( ! self::$jsInjected) {
+        if (!self::$jsInjected) {
             self::$jsInjected = true;
 
             $html .= "<script> ";

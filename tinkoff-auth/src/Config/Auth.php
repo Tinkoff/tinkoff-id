@@ -4,10 +4,10 @@ namespace TinkoffAuth\Config;
 
 class Auth extends Config
 {
-    const CLIENT_ID     = 'client_id';
+    const CLIENT_ID = 'client_id';
     const CLIENT_SECRET = 'client_secret';
-    const REDIRECT_URI  = 'redirect_uri';
-    const ACCESS_TOKEN  = 'access_token';
+    const REDIRECT_URI = 'redirect_uri';
+    const ACCESS_TOKEN = 'access_token';
 
     protected $availableIndexes = [
         self::CLIENT_ID,

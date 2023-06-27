@@ -18,8 +18,6 @@ class Api extends BaseFacade
      * Необходимые scopes для получения профиля пользователя
      */
     const SCOPES_FOR_AUTH = [
-        'email',
-        'profile',
         'phone'
     ];
 
@@ -33,6 +31,20 @@ class Api extends BaseFacade
     public function getAccessToken($validateState = true)
     {
         $token = $this->token($validateState);
+
+        return isset($token['access_token']) && $token['access_token'] ? $token['access_token'] : null;
+    }
+
+    /**
+     * Получение AccessToken через RefreshToken. Обертка updateToken
+     *
+     * @param string $refreshToken
+     *
+     * @return string|null
+     */
+    public function updateAccessToken($refreshToken)
+    {
+        $token = $this->updateToken($refreshToken);
 
         return isset($token['access_token']) && $token['access_token'] ? $token['access_token'] : null;
     }
@@ -92,7 +104,7 @@ class Api extends BaseFacade
         $authParams = $this->getAuthParams($validateState);
         $code       = isset($authParams['code']) && $authParams['code'] ? $authParams['code'] : null;
 
-        if ( ! $code) {
+        if (!$code) {
             return [];
         }
 
@@ -101,6 +113,27 @@ class Api extends BaseFacade
             'grant_type'   => 'authorization_code',
             'code'         => $code,
             'redirect_uri' => $authConfig->get(Auth::REDIRECT_URI)
+        ]);
+
+        return ApiFormatter::formatTokenParams($response);
+    }
+
+    /**
+     * Запрос для получения Access Token через RefreshToken
+     *
+     * @param $refreshToken
+     *
+     * @return array
+     */
+    public function updateToken($refreshToken)
+    {
+        $authConfig = Auth::getInstance();
+
+        $request  = $this->createTinkoffIDRequest();
+        $response = $request->post('/auth/token', [
+            'grant_type'    => 'refresh_token',
+            'refresh_token' => $refreshToken,
+            'redirect_uri'  => $authConfig->get(Auth::REDIRECT_URI)
         ]);
 
         return ApiFormatter::formatTokenParams($response);
@@ -139,7 +172,7 @@ class Api extends BaseFacade
         $apiConfig  = ApiConfig::getInstance();
 
         $accessToken = isset($accessToken) && $accessToken ? $accessToken : $authConfig->get(Auth::ACCESS_TOKEN);
-        if ( ! $accessToken) {
+        if (!$accessToken) {
             return ApiFormatter::formatUserinfoFull();
         }
 
@@ -147,18 +180,18 @@ class Api extends BaseFacade
         $neededScopes = $apiConfig->getScopes();
 
         $userinfoFull = [];
-        foreach ($routes as $index => $route) {
-            $scopes = isset($neededScopes[$index]) && $neededScopes[$index] ? $neededScopes[$index] : [];
+        foreach ($routes as $scopeIndex => $route) {
+            $scopes = isset($neededScopes[$scopeIndex]) && $neededScopes[$scopeIndex] ? $neededScopes[$scopeIndex] : [];
 
             $userHasNeededScopes = $this->validateScopes($scopes);
-            if ( ! $userHasNeededScopes) {
+            if (!$userHasNeededScopes) {
                 continue;
             }
 
             $request = new Request();
             $request = $this->addBearerCredentials($request, $accessToken);
 
-            switch ($index) {
+            switch ($scopeIndex) {
                 case ApiConfig::SCOPES_USERINFO:
                     $response = $request->post($route, [
                         'client_id'     => $authConfig->get(Auth::CLIENT_ID),
@@ -169,7 +202,7 @@ class Api extends BaseFacade
                     $response = $request->request($route);
             }
 
-            $userinfoFull[$index] = $response->json();
+            $userinfoFull[$scopeIndex] = $response->json();
         }
 
         return ApiFormatter::formatUserinfoFull($userinfoFull);
@@ -184,7 +217,7 @@ class Api extends BaseFacade
      */
     public function introspect($accessToken = null)
     {
-        if ( ! $accessToken) {
+        if (!$accessToken) {
             $authConfig  = Auth::getInstance();
             $accessToken = $authConfig->get(Auth::ACCESS_TOKEN);
         }
@@ -213,7 +246,7 @@ class Api extends BaseFacade
 
         if ($validateState) {
             $stateService = new State();
-            if ( ! $stateService->validate($state)) {
+            if (!$stateService->validate($state)) {
                 return [];
             }
         }
@@ -256,7 +289,7 @@ class Api extends BaseFacade
     {
         $authConfig = Auth::getInstance();
 
-        if ( ! $accessToken) {
+        if (!$accessToken) {
             $accessToken = $authConfig->get(Auth::ACCESS_TOKEN);
         }
 

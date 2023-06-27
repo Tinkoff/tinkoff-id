@@ -115,15 +115,18 @@ function tinkoff_auth_credentials_settings_init() {
 }
 
 function tinkoff_auth_section_credentials_callback( $args ) {
+	echo '<hr>';
 	$link = '<a href="https://business.tinkoff.ru/openapi/docs#section/Partnerskij-scenarij/Registraciya">тут</a>';
 	echo "<p>Данные для авторизации можно получить, следуя инструкции {$link}</p>";
 }
 
 function tinkoff_auth_section_visual_callback() {
+	echo '<hr>';
 	echo '<p>Можете выбрать расположение кнопки в шаблоне, либо самостоятельно использовать шордкод "[tinkoff-button]"</p>';
 }
 
 function tinkoff_auth_section_compatibility_callback() {
+	echo '<hr>';
 	echo '<p>При необходимости, вы можете включить совместимость с некоторыми сторонними плагинами</p>';
 }
 

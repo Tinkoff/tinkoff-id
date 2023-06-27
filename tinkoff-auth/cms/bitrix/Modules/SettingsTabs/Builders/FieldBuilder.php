@@ -9,9 +9,10 @@ class FieldBuilder extends Builder
     private $placeholder = '';
     private $type = 'text';
     private $options = [];
+    private $multiple = false;
 
-    const TYPE_TEXT     = 'text';
-    const TYPE_SELECT   = 'select';
+    const TYPE_TEXT = 'text';
+    const TYPE_SELECT = 'select';
     const TYPE_TEXTAREA = 'textarea';
 
     public function build()
@@ -37,15 +38,24 @@ class FieldBuilder extends Builder
     {
         $prefix = '<td style="width: 60%">';
         $suffix = '</td>';
-        $value  = htmlspecialcharsbx(\COption::GetOptionString($this->getModuleID(), $this->getId(), ''));
+        $value  = \COption::GetOptionString($this->getModuleID(), $this->getId(), '');
+        $value  = json_decode($value) ? json_decode($value, true) : $value;
+
+        $value = is_string($value) ? htmlspecialcharsbx($value) : $value;
+
         switch ($this->type) {
             case self::TYPE_SELECT:
-                $select = '<select name="' . $this->getId() . '">';
+                $multiple = $this->isMultiple() ? ' multiple ' : ' ';
+                $name     = $this->isMultiple() ? $this->getId() . '[]' : $this->getId();
+
+                $select = '<select ' . $multiple . ' name="' . $name . '">';
 
                 foreach ($this->getOptions() as $index => $label) {
+                    $selected = is_array($value) ? in_array($index, $value) : $value == $index;
+
                     $option = '<option ';
                     $option .= 'value="' . $index . '" ';
-                    $option .= $index == $value ? 'selected ' : ' ';
+                    $option .= $selected ? 'selected ' : ' ';
                     $option .= '>';
                     $option .= $label;
                     $option .= '</option>';
@@ -156,5 +166,23 @@ class FieldBuilder extends Builder
     public function setOptions($options)
     {
         $this->options = $options;
+    }
+
+    /**
+     * @param $multiple
+     *
+     * @return void
+     */
+    public function setMultiple($multiple)
+    {
+        $this->multiple = $multiple;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMultiple()
+    {
+        return $this->multiple;
     }
 }

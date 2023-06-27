@@ -7,12 +7,12 @@ use TinkoffAuth\View\Component;
 class AuthButton extends Component
 {
     const BUTTON_SIZE_DEFAULT = 'default';
-    const BUTTON_SIZE_SMALL   = 'small';
-    const BUTTON_SIZE_LARGE   = 'large';
+    const BUTTON_SIZE_SMALL = 'small';
+    const BUTTON_SIZE_LARGE = 'large';
 
     const BUTTON_COLOR_YELLOW = 'yellow';
-    const BUTTON_COLOR_WHITE  = 'white';
-    const BUTTON_COLOR_BLACK  = 'black';
+    const BUTTON_COLOR_WHITE = 'white';
+    const BUTTON_COLOR_BLACK = 'black';
 
     const BUTTON_LANG_EN = 'en';
     const BUTTON_LANG_RU = 'ru';
@@ -67,7 +67,7 @@ class AuthButton extends Component
         $string   = $this->styles();
         $filename = $lang . '-' . $color . '-' . $size . '.svg';
         $filepath = __DIR__ . '/SVG/' . $filename;
-        if ( ! file_exists($filepath)) {
+        if (!file_exists($filepath)) {
             return '';
         }
 

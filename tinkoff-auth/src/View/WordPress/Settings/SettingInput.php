@@ -10,7 +10,7 @@ class SettingInput extends WordPressSettingsComponent
      */
     public function render()
     {
-        if ( ! function_exists('get_option')) {
+        if (!function_exists('get_option')) {
             return '';
         }
 
