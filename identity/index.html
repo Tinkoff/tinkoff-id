@@ -357,8 +357,6 @@
         
           
         
-          
-        
       
       
         <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -423,20 +421,6 @@
     <li class="md-nav__item">
       <a href="../join/" class="md-nav__link">
         Как подключить сервис
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tech_ank/" class="md-nav__link">
-        Документы
       </a>
     </li>
   
@@ -1303,49 +1287,43 @@
 <td align="center">0 (Проверяется Tinkoff ID при авторизации пользователя)</td>
 <td align="center">Антифрод проверки</td>
 <td align="center">Редирект пользователя с "access_denied"</td>
-<td align="center">"Идентификация заблокирована антифродом Тинькофф банка."</td>
+<td align="center">Заголовок: Что-то пошло не так. Текст: Напишите в поддержку</td>
+</tr>
+<tr>
+<td align="center">в личном кабинете Тинькофф</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr>
 <td align="center">1</td>
 <td align="center">Получить признак идентификации</td>
 <td align="center">Ответ метода: "isIdentified": false</td>
-<td align="center">"Вы не прошли идентификацию по одной из причин:</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">1. Напишите в поддержку в личном кабинете Тинькофф.</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center">2. Напишите в поддержку в личном кабинете Тинькофф.</td>
+<td align="center">Заголовок: Не можем вас распознать. Текст: Напишите в поддержку в личном кабинете Тинькофф</td>
 </tr>
 <tr>
 <td align="center">2</td>
 <td align="center">Получить признак ЧС</td>
 <td align="center">Ответ метода: "true"</td>
-<td align="center">Вы в черном списке</td>
+<td align="center">Заголовок: Вход недоступен. Текст: Вы в черном списке</td>
 </tr>
 <tr>
 <td align="center">3</td>
 <td align="center">Проверить паспорт</td>
 <td align="center">Ответ метода: "Паспортные данные не валидны"</td>
-<td align="center">Обновите данные в личном кабинете и попробуйте зайти еще раз</td>
+<td align="center">Заголовок: Паспорт недействителен. Текст: Обновите данные в личном кабинете и попробуйте зайти еще раз</td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Получить паспортные данные</td>
 <td align="center">На основании ответа метода по данным в параметре "birthDate" - Пользователь младше 18</td>
-<td align="center">Вход только с 18 лет</td>
+<td align="center">Заголовок: Не получилось зайти. Текст: Вход только с 18 лет</td>
 </tr>
 <tr>
 <td align="center">4</td>
 <td align="center">Получить паспортные данные</td>
 <td align="center">На основании ответа метода по данным в параметре "citizenship" значение != "РФ" - пользователь не гражданин РФ</td>
-<td align="center">Вход только для граждан РФ</td>
+<td align="center">Заголовок: Не получилось зайти. Текст: Вход только для граждан РФ</td>
 </tr>
 </tbody>
 </table>
