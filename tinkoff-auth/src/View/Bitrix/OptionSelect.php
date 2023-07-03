@@ -11,7 +11,7 @@ class OptionSelect extends BitrixComponent
     public static function groups()
     {
         $groupsResult = [];
-        $groups       = CGroup::GetList();
+        $groups       = CGroup::GetList(($by="c_sort"), ($order="desc"));
         while ($group = $groups->Fetch()) {
             $id = $group['ID'];
             if ($id === "1" || $id === "2") {
