@@ -7,6 +7,7 @@ use TinkoffAuth\Config\Auth;
 use TinkoffAuth\Helpers\ApiFormatter;
 use TinkoffAuth\Helpers\ApiHelper;
 use TinkoffAuth\Services\Http\Request;
+use TinkoffAuth\Services\Logger\RequestLogger;
 use TinkoffAuth\Services\State\State;
 
 /**
@@ -108,12 +109,15 @@ class Api extends BaseFacade
             return [];
         }
 
-        $request  = $this->createTinkoffIDRequest();
-        $response = $request->post('/auth/token', [
+        $query    = [
             'grant_type'   => 'authorization_code',
             'code'         => $code,
             'redirect_uri' => $authConfig->get(Auth::REDIRECT_URI)
-        ]);
+        ];
+        $request  = $this->createTinkoffIDRequest();
+        $response = $request->post('/auth/token', $query);
+
+        RequestLogger::request('POST', 'https://id.tinkoff.ru/auth/token', $query, $response);
 
         return ApiFormatter::formatTokenParams($response);
     }
@@ -129,12 +133,16 @@ class Api extends BaseFacade
     {
         $authConfig = Auth::getInstance();
 
-        $request  = $this->createTinkoffIDRequest();
-        $response = $request->post('/auth/token', [
+        $request = $this->createTinkoffIDRequest();
+
+        $query    = [
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refreshToken,
             'redirect_uri'  => $authConfig->get(Auth::REDIRECT_URI)
-        ]);
+        ];
+        $response = $request->post('/auth/token', $query);
+
+        RequestLogger::request('POST', 'https://id.tinkoff.ru/auth/token', $query, $response);
 
         return ApiFormatter::formatTokenParams($response);
     }
@@ -150,12 +158,15 @@ class Api extends BaseFacade
     {
         $authConfig = Auth::getInstance();
 
-        $request  = $this->createTinkoffIDBearerRequest($accessToken);
-        $response = $request->post('/userinfo/userinfo', [
+        $request = $this->createTinkoffIDBearerRequest($accessToken);
+
+        $query    = [
             'client_id'     => $authConfig->get(Auth::CLIENT_ID),
             'client_secret' => $authConfig->get(Auth::CLIENT_SECRET)
-        ]);
+        ];
+        $response = $request->post('/userinfo/userinfo', $query);
 
+        RequestLogger::request('POST', 'https://id.tinkoff.ru/userinfo/userinfo', $query, $response);
         return $response->json();
     }
 
@@ -191,16 +202,22 @@ class Api extends BaseFacade
             $request = new Request();
             $request = $this->addBearerCredentials($request, $accessToken);
 
+            $query  = [];
+            $method = 'GET';
             switch ($scopeIndex) {
                 case ApiConfig::SCOPES_USERINFO:
-                    $response = $request->post($route, [
+                    $query    = [
                         'client_id'     => $authConfig->get(Auth::CLIENT_ID),
                         'client_secret' => $authConfig->get(Auth::CLIENT_SECRET)
-                    ]);
+                    ];
+                    $response = $request->post($route, $query);
+                    $method   = 'POST';
                     break;
                 default:
                     $response = $request->request($route);
             }
+
+            RequestLogger::request($method, $route, $query, $response);
 
             $userinfoFull[$scopeIndex] = $response->json();
         }

@@ -21,12 +21,12 @@ abstract class Config
 
     /**
      * @param $index
-     *
+     * @param null $default
      * @return mixed|null
      */
-    public function get($index)
+    public function get($index, $default = null)
     {
-        return isset($this->store[$index]) && $this->store[$index] ? $this->store[$index] : null;
+        return isset($this->store[$index]) && $this->store[$index] ? $this->store[$index] : $default;
     }
 
     /**
