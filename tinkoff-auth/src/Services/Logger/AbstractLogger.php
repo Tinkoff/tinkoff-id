@@ -15,7 +15,7 @@ abstract class AbstractLogger
         }
 
         $datetime = new \DateTime();
-        $datetime->setTimezone('Europe/Moscow');
+        $datetime->setTimezone(new \DateTimeZone('Europe/Moscow'));
         $message = '[' . $datetime->format('d.m.Y H:i:s') . ']' . $message . "\n";
 
         @file_put_contents($this->getFilePath(), $message, FILE_APPEND);
