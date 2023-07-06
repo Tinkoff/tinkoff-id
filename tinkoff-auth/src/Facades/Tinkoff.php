@@ -67,11 +67,11 @@ class Tinkoff extends BaseFacade
         }
         $authConfig->push(Auth::ACCESS_TOKEN, $accessToken);
 
-        if (!$api->validateScopes(Api::SCOPES_FOR_AUTH, $accessToken)) {
-            $mediator->setMessage('Пользователь предоставил недостаточно сведений');
-
-            return $mediator;
-        }
+//        if (!$api->validateScopes(Api::SCOPES_FOR_AUTH, $accessToken)) {
+//            $mediator->setMessage('Пользователь предоставил недостаточно сведений');
+//
+//            return $mediator;
+//        }
 
         $userinfo = $api->userinfoFull($accessToken);
         if (count($userinfo[ApiConfig::SCOPES_USERINFO]) === 0) {

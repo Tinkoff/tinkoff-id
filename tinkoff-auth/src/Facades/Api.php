@@ -239,10 +239,11 @@ class Api extends BaseFacade
             $accessToken = $authConfig->get(Auth::ACCESS_TOKEN);
         }
 
+        $query = ['token' => $accessToken,];
         $request  = $this->createTinkoffIDRequest();
-        $response = $request->post('/auth/introspect', [
-            'token' => $accessToken,
-        ]);
+        $response = $request->post('/auth/introspect', $query);
+
+        RequestLogger::request('POST', 'https://id.tinkoff.ru/auth/introspect', $query, $response);
 
         return ApiFormatter::formatIntrospectParams($response);
     }
