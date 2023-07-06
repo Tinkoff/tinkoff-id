@@ -1,12 +1,12 @@
 === Tinkoff ID ===
 Stable tag:        0.2
-Contributors:      dmtrbskkv
+Contributors:      Tinkoff ID Team
 Tested up to:      6.1
 WC Tested up to:   7.2
-Requires PHP:      7.4
-Tags:              tinkoff, тинькофф, auth, авторизация, tinkoff id, social auth, dmtrbskkv, moodmachine
-License:           GPLv2 or later
-License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP:      5.6
+Tags:              tinkoff, тинькофф, auth, авторизация, tinkoff id, social auth, moodmachine
+License:           MIT License
+License URI:       https://opensource.org/license/mit/
 
 Авторизация через Тинькофф ID для вашего WordPress сайта!
 
@@ -24,3 +24,11 @@ License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
 = 0.2 =
 * Улучшение совместимости плагина с WordPress
+
+== License ==
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
