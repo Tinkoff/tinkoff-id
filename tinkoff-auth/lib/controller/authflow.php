@@ -11,6 +11,7 @@ use CModule;
 use TinkoffAuth\Config\Api;
 use TinkoffAuth\Config\TIDModule;
 use TinkoffAuth\Facades\Tinkoff;
+use TinkoffAuth\Services\Logger\Logger;
 use TinkoffAuth\Services\Logger\RequestLogger;
 
 
@@ -148,6 +149,11 @@ class AuthFlow extends Controller
 
     private function redirectHome($message = null)
     {
+        if ($message && TIDModule::getInstance()->isLogEnable()) {
+            $logger = new Logger();
+            $logger->log($message);
+        }
+
         setcookie("tid_error_message", $message, time() + 3600);
 
         if (class_exists(Redirect::class)) {
