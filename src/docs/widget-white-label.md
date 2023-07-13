@@ -51,6 +51,7 @@ Widget White Label от Tinkoff ID — это скрипт, который на 
 		<script>
   			const tidSdk = new TidSDK({
       			redirectUri: 'https://mysite.ru/auth/success',
+				new_session: 'true',
       			responseType: 'code',
       			scopeParameters: '',
       			clientId: 'XXXX',
@@ -70,6 +71,7 @@ Widget White Label от Tinkoff ID — это скрипт, который на 
 ## Описание параметров
 ### Auth Params
   - **redirectUri** `string` - Uri, на который будет перенаправлен клиент после завершения авторизационного диалога
+  - **new_session** `boolean` - Флаг того, что в процессе авторизации необходимо выпустить новую сессию
   - **responseType** `string` - Определяет какой авторизационный процесс будет запущен и какие параметры будут переданы по завершению авторизации
   - **scopeParameters** `string` (необязательный параметр) - Набор данных, указанный партнером в технической анкете
   - **clientId** `string` - Идентификатор клиента (приложения)
