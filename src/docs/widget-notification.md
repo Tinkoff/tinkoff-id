@@ -56,7 +56,6 @@ Widget Notification от Tinkoff ID это всплывающее уведомл
             const tidSdk = new TidSDK({
                 redirectUri: 'https://mysite.ru/auth/success',
                 responseType: 'code',
-                scopeParameters: '',
                 clientId: 'XXXX',
                 state: 'XXXX'
             });
@@ -90,7 +89,6 @@ Widget Notification от Tinkoff ID это всплывающее уведомл
 ### Auth Params
   - **redirectUri** `string` - Uri, на который будет перенаправлен клиент после завершения авторизационного диалога
   - **responseType** `string` - Определяет какой авторизационный процесс будет запущен и какие параметры будут переданы по завершению авторизации
-  - **scopeParameters** `string` (необязательный параметр) - Набор данных, указанный партнером в технической анкете
   - **clientId** `string` - Идентификатор клиента (приложения)
   - **state** `string` - Строка, генерируемая на стороне клиента для связи контекста запуска авторизации с завершением
 
