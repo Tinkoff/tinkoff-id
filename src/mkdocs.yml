@@ -74,6 +74,7 @@ nav:
     - Проверка наличия в чёрных списках: blacklist.md
     - Получить информацию об идентификации пользователя: ident_identification.md
     - Получить адреса: ident_addresses.md
+    - Тестирование: testing_ident.md
   - Методы:
     - Информация о пользователе: userinfo.md
     - Получить паспортные данные: passport.md
@@ -85,6 +86,7 @@ nav:
     - Получить информацию об активной подписке клиента: subscription.md
     - Получить информацию об идентификации пользователя: identification.md
     - Получить адреса: addresses.md
+    - Тестирование: testing_metod.md
   - FAQ: 
     - Часто задаваемые вопросы: faq.md
     - Глоссарий: glossary.md
