@@ -18,6 +18,7 @@ Responses
     
 
     RESPONSE SCHEMA: application/json
+    
     `requestId` (required) - `string <uuid>` (Идентификатор запроса проверки в СМЭВ 3.0 (для получения результата))
 
 
