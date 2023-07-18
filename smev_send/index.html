@@ -1215,17 +1215,14 @@
 <div class="tabbed-block">
 <p>200 Запрос на проверку паспортных данных отправлен</p>
 <p>RESPONSE HEADERS</p>
-<p><code>X-Request-Id</code> (required) - <code>string</code> <code>&lt;= 50 characters</code> (Идентификатор запроса)</p>
+<p><code>X-Request-Id</code> (required) - <code>string</code> <code>(SMEVPassportCheckStatus)</code> (Идентификатор запроса)</p>
 <p>RESPONSE SCHEMA: application/json
-<code>requestId</code> (required) - <code>string &lt;uuid&gt;</code> (Идентификатор запроса проверки в СМЭВ 3.0 (для получения результата))
-* <code>IN_PROGRESS</code> - Процесс проверки еще не закончен. Повторите запрос через некоторое время
-* <code>VALID</code> - Паспорт действителен
-* <code>INVALID</code> - Паспорт недействителен или не существует</p>
+<code>requestId</code> (required) - <code>string &lt;uuid&gt;</code> (Идентификатор запроса проверки в СМЭВ 3.0 (для получения результата))</p>
 <p>Пример запроса</p>
-<p><code>GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport-check-smev</code></p>
+<p><code>POST https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport-check-smev</code></p>
 <p>Пример упешного (200) ответа:</p>
 <div class="highlight"><pre><span></span><code>{
-  &quot;result&quot;: &quot;IN_PROGRESS&quot;
+  &quot;requestId&quot;: &quot;30109424-c045-4831-9307-31121a0d2045&quot;
 }
 </code></pre></div>
 </div>
