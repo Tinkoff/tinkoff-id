@@ -20,11 +20,15 @@ Responses
     RESPONSE SCHEMA: application/json
     
     `requestId` (required) - `string (SMEVPassportCheckStatus)`
+    
     Enum: `"IN_PROGRESS"` `"VALID"` `"INVALID"`
+    
     Статус/результат проверки паспортных данных в СМЭВ 3.0:
     
     `IN_PROGRESS` - Процесс проверки еще не закончен. Повторите запрос через некоторое время
+    
     `VALID` - Паспорт действителен
+    
     `INVALID` - Паспорт недействителен или не существует
     
     Пример запроса
