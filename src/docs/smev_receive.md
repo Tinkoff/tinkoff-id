@@ -11,25 +11,31 @@ Responses
 === "200"
 
     200 Запрос найден, статус получен
-
+    
     RESPONSE HEADERS
-
-    `X-Request-Id` (required) - `string` `(SMEVPassportCheckStatus)` (Идентификатор запроса)
+    
+    `X-Request-Id` (required) - `string` `<= 50 characters` (Идентификатор запроса)
     
 
     RESPONSE SCHEMA: application/json
-    `requestId` (required) - `string <uuid>` (Идентификатор запроса проверки в СМЭВ 3.0 (для получения результата))
-
-
+    
+    `requestId` (required) - `string (SMEVPassportCheckStatus)`
+    Enum: `"IN_PROGRESS"` `"VALID"` `"INVALID"`
+    Статус/результат проверки паспортных данных в СМЭВ 3.0:
+    
+    `IN_PROGRESS` - Процесс проверки еще не закончен. Повторите запрос через некоторое время
+    `VALID` - Паспорт действителен
+    `INVALID` - Паспорт недействителен или не существует
+    
     Пример запроса
 
-    ```POST https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport-check-smev```
+    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport-check-smev```
 
     Пример упешного (200) ответа:
 
     ```
     {
-      "requestId": "30109424-c045-4831-9307-31121a0d2045"
+      "result": "IN_PROGRESS"
     }
     ```
 
