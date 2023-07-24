@@ -126,6 +126,7 @@ class AuthFlow extends Controller
             'LAST_NAME'                     => $userinfo['family_name'],
             'SECOND_NAME'                   => $userinfo['middle_name'],
             'PERSONAL_PHONE'                => $username,
+            'IS_TINKOFF_CLIENT'             => true,
             'TINKOFF_AUTH_PASSPORT'         => $passport,
             'TINKOFF_AUTH_DRIVE_LICENSES'   => $driveLicenses,
             'TINKOFF_AUTH_INN'              => $inn,
