@@ -31,7 +31,7 @@ Responses
     
     Пример запроса
 
-    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport-check-smev```
+    ```GET https://business.tinkoff.ru/openapi/api/v1/individual/documents/passport-check-smev/status```
 
     Пример упешного (200) ответа:
 
