@@ -152,6 +152,7 @@ function tinkoff_auth_auth_callback( WP_REST_Request $request ) {
 
 	// Профиль WP
 	tid_add_user_meta( $user_id, 'is_tinkoff', true );
+	tid_add_user_meta( $user_id, 'is_tinkoff_client', true );
 	tid_add_user_meta( $user_id, 'first_name', tid_user_fields_getter( $userinfo, 'given_name' ) );
 	tid_add_user_meta( $user_id, 'shipping_first_name', tid_user_fields_getter( $userinfo, 'given_name' ) );
 	tid_add_user_meta( $user_id, 'last_name', tid_user_fields_getter( $userinfo, 'family_name' ) );

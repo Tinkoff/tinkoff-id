@@ -14,6 +14,11 @@ class Request
      */
     private $headers = [];
 
+    private $contentType = self::CONTENT_TYPE_FORM_DATA;
+
+    const CONTENT_TYPE_FORM_DATA = 'application/x-www-form-urlencoded';
+    const CONTENT_TYPE_JSON = 'application/json';
+
     public function __construct($domain = '')
     {
         $this->curl = curl_init();
@@ -41,6 +46,16 @@ class Request
     public function pushHeader($value)
     {
         $this->headers[] = $value;
+    }
+
+    public function getContentType()
+    {
+        return $this->contentType;
+    }
+
+    public function setContentType($contentType)
+    {
+        $this->contentType = $contentType;
     }
 
     /**
@@ -76,7 +91,16 @@ class Request
     {
         if (strtolower($method) === 'post') {
             curl_setopt($this->curl, CURLOPT_POST, true);
-            curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($body));
+            switch ($this->getContentType()) {
+                case self::CONTENT_TYPE_FORM_DATA:
+                    curl_setopt($this->curl, CURLOPT_POSTFIELDS, http_build_query($body));
+                    break;
+                case self::CONTENT_TYPE_JSON:
+                    curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($body));
+                    break;
+                default:
+                    curl_setopt($this->curl, CURLOPT_POSTFIELDS, $body);
+            }
             $this->headers[] = 'content-type: application/x-www-form-urlencoded';
         }
 
